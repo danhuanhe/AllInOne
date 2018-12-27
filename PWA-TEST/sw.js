@@ -2,6 +2,7 @@
 const CACHE_NAME = "_cache_v1.0.0";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
+	//'index.html',
     'offline.html',
     'res/img/404.png'
 ];
@@ -14,12 +15,12 @@ function onlineRequest(fetchRequest) {
         if (
             !response
             || response.status !== 200
-            || !response.headers.get('Content-type').match(/image|javascript|test\/css/i)
+            || !response.headers.get('Content-type').match(/\/res|\/lib|\/css/i)
         ) {
             return response;
         }
 
-//      const responseToCache = response.clone();
+        const responseToCache = response.clone();console.log(responseToCache);
 //      caches.open(CACHE_NAME)
 //          .then(function (cache) {
 //              cache.put(fetchRequest, responseToCache);
@@ -61,17 +62,16 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-        .then(hit => {
+        .then(response => {
             // 返回缓存中命中的文件
-            if (hit) {
-            	console.log("缓存中：",hit);
-                return hit;
+            if (response) {
+            	console.log("缓存中："+response.url);
+                return response;
             }
-
             const fetchRequest = event.request.clone();
-			console.log(fetchRequest);
 			var mc=fetchRequest.url.match(/\/api\/(.+)/);
 			if(mc){
+				console.log(fetchRequest.url);
 				var apiLast=mc[1];//getList/get
 				if(apiLast){
 					apiLast=apiLast.replace(/\//gi,"-");
@@ -79,9 +79,11 @@ self.addEventListener('fetch', event => {
 				}
 			}
             if (navigator.onLine) {
+            	console.log("联网中："+fetchRequest.url);
                 // 如果为联网状态
                 return onlineRequest(fetchRequest);
             } else {
+            	console.log("离线中："+fetchRequest.url);
                 // 如果为离线状态
                 return offlineRequest(fetchRequest);
             }
@@ -90,15 +92,33 @@ self.addEventListener('fetch', event => {
 });
 
 
+this.addEventListener('activate', event => {
+	event.waitUntil(clients.claim().then(function(){
+		console.log("可以马上监控发送请求了");
+	}));
+	console.log('activate');
+    const cacheWhitelist = [CACHE_NAME];
+    event.waitUntil(
+        // 遍历当前的缓存，删除除 `CACHE_NAME` 之外的所有缓存
+        caches.keys().then(keyList => {
+            return Promise.all(keyList.map(key => {
+                if (cacheWhitelist.indexOf(key) === -1) {
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
+});
+
 self.addEventListener('push', function(event) {
     // 读取 event.data 获取传递过来的数据，根据该数据做进一步的逻辑处理
-    const obj = event.data.json();
-
+    const obj = event.data.text();
+	console.log(obj);
     // 逻辑处理示例
-    if(Notification.permission === 'granted' && obj.action === 'subscribe') {
+    if(Notification.permission === 'granted'){//&& obj.action === 'subscribe') {
         self.registration.showNotification("Hi：", {
-            body: '订阅成功 ~',
-            icon: '//lzw.me/images/avatar/lzwme-80x80.png',
+            body: obj,
+            icon: '/PWA-TEST/res/img/icon-144x144.png',
             tag: 'push'
         });
     }

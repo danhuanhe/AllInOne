@@ -22,19 +22,18 @@
 		  </div>
 		  <section id="main">
 		    <ul id="todo-list">
-		      <li class="completed">
-					<p>111111111111111</p>
+		      {#list list as item}
+		      <li>
+					<span>{item.name}</span>---<time>{item.timeStr}</time>
 		      </li>
-		      <li class="">
-		        	<p>22222222222</p>
-		      </li>
+		      {/list}
 		    </ul>
 		  </section>
 		  <footer id="footer">
 		    <div>
 		    	<texteara></texteara>
 		    </div>
-		    <button id="btn-save">提交</button>
+		    <button id="btn-save" on-click={this.onSave($event)}>提交</button>
 		  </footer>
 		</script>
 		

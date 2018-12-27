@@ -2,7 +2,7 @@
 	"code":200,
 	"message":"",
 	"result": [
-	    { "name": "cam1111111111", "content": "It's good idea!", "publishTime": "2015-05-01" },
-	    { "name": "arcthur", "content": "Not bad.", "publishTime": "2015-05-01" }
+	    { "name": "cam1111111111", "content": "It's good idea!", "timeStr": "2015-05-01" },
+	    { "name": "arcthur", "content": "Not bad.", "timeStr": "2015-05-01" }
 	]
 }
