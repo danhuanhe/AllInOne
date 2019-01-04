@@ -2,9 +2,42 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="PWA测试">
+		<link rel="apple-touch-icon" href="res/img/icon-144x144.png">
+		
+		<meta name="msapplication-TileImage" content="res/img/icon-144x144.png">
+		<meta name="msapplication-TileColor" content="#2F3BA2">
+
+		
 		<title></title>
+		<script src="lib/regular.js"></script>
+		<script src="lib/indexdb.js"></script>
 	</head>
 	<body>
-		掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦掉线啦
+		<div id="todoapp"></div>
+		<script type='template/regular' id='todomvc'>
+		  <div>
+		    <h1>日志列表-已离线</h1>
+		  </div>
+		  <section id="main">
+		    <ul id="todo-list">
+		      {#list list as item}
+		      <li>
+					<span>{item.name}</span>---<time>{item.timeStr}</time>
+		      </li>
+		      {/list}
+		    </ul>
+		  </section>
+		  <footer id="footer">
+		    <div>
+		    	<textarea cols="200" rows="6" r-model="content"></textarea>
+		    </div>
+		    <button id="btn-save" on-click={this.onSave($event)}>提交</button>
+		  </footer>
+		</script>
+		
+		<script src="app.js"></script>
 	</body>
 </html>

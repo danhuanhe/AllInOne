@@ -13,6 +13,7 @@
 		
 		<title></title>
 		<script src="lib/regular.js"></script>
+		<script src="lib/indexdb.js"></script>
 	</head>
 	<body>
 		<div id="todoapp"></div>
@@ -31,7 +32,7 @@
 		  </section>
 		  <footer id="footer">
 		    <div>
-		    	<texteara></texteara>
+		    	<textarea cols="200" rows="6" r-model="content"></textarea>
 		    </div>
 		    <button id="btn-save" on-click={this.onSave($event)}>提交</button>
 		  </footer>

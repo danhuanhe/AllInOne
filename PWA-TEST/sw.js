@@ -1,11 +1,24 @@
 // 用于标注创建的缓存，也可以根据它来建立版本规范
-const CACHE_NAME = "_cache_v1.0.0";
+const CACHE_NAME = "_cache_v1.0.9";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
-	//'index.html',
     'offline.html',
     'res/img/404.png'
-];
+];//默认必须缓存的内容
+
+const urlsToCache1 = [
+    'app.js',
+    'lib/indexdb.js',
+    'lib/regular.js'
+];//在线请求之后缓存
+
+function isInUrlsToCache1(url){
+	for(var a=0;a<urlsToCache1.length;a++){//22334433,33
+		if(url.lastIndexOf(urlsToCache1[a])==url.length-urlsToCache1[a].length){
+			return true;
+		}
+	}
+};
 const prePath="/PWA-TEST/"
 // 联网状态下执行
 function onlineRequest(fetchRequest) {
@@ -15,17 +28,18 @@ function onlineRequest(fetchRequest) {
         if (
             !response
             || response.status !== 200
-            || !response.headers.get('Content-type').match(/\/res|\/lib|\/css/i)
+            || response.url.match(/\/res|\/css/i)
         ) {
             return response;
         }
-
-        const responseToCache = response.clone();console.log(responseToCache);
-//      caches.open(CACHE_NAME)
-//          .then(function (cache) {
-//              cache.put(fetchRequest, responseToCache);
-//          });
-
+		if(isInUrlsToCache1(response.url)){
+			
+			const responseToCache = response.clone();console.log("cache-to:"+response.url);
+			caches.open(CACHE_NAME)
+            .then(function (cache) {
+                cache.put(fetchRequest, responseToCache);
+            });
+		}
         return response;
     }).catch(() => {
         // 获取失败，离线资源降级替换
@@ -36,12 +50,12 @@ function onlineRequest(fetchRequest) {
 function offlineRequest(request) {
     // 使用离线图片
     if (request.url.match(/\.(png|gif|jpg)/i)) {
-        return caches.match('/images/offline.png');
+        return caches.match('res/img/404.png');
     }
 
     // 使用离线页面
     if (request.url.match(/\.html$/)) {
-        return caches.match('/test/offline.html');
+        return caches.match('offline.html');
     }
 }
 // self 为当前 scope 内的上下文
@@ -75,7 +89,35 @@ self.addEventListener('fetch', event => {
 				var apiLast=mc[1];//getList/get
 				if(apiLast){
 					apiLast=apiLast.replace(/\//gi,"-");
-					return fetch(prePath+"api/"+apiLast+".json");
+					if (navigator.onLine) {
+						return fetch(prePath+"api/"+apiLast+".json");
+					}else{
+						return new Promise(function(resolve,reject){
+							var _json={
+								"code":200,
+								"message":"",
+								"result": [
+								    { "name": "离线1111-cam1111111111", "content": "离线-It's good idea!", "timeStr": "2015-05-01" },
+								    { "name": "离线2222222-arcthur", "content": "离线-Not bad.", "timeStr": "2015-05-01" }
+								]
+							};
+							var _blob = new Blob([JSON.stringify(_json, null, 2)],{type : 'application/json'});
+							 var _p=new Response(_blob, {
+							    headers: {
+							    	"Content-Type" : "text/plain",
+							    },
+							    ok: true,
+								redirected: false,
+								status: 200,
+								statusText: "OK",
+								type: "json",
+								url: prePath+"api/"+apiLast+".json"
+							 });
+							 
+							 resolve(_p);
+						});
+					}
+					
 				}
 			}
             if (navigator.onLine) {
@@ -122,4 +164,23 @@ self.addEventListener('push', function(event) {
             tag: 'push'
         });
     }
+});
+
+self.addEventListener('online', function(event) {console.log('online');
+    self.clients.matchAll().then(clientList => {
+	    clientList.forEach(client => {
+	        client.postMessage({
+	        	online:true
+	        });
+	    })
+	});
+});
+self.addEventListener('offline', function(event) {console.log('offline');
+    self.clients.matchAll().then(clientList => {
+	    clientList.forEach(client => {
+	        client.postMessage({
+	        	online:false
+	        });
+	    })
+	});
 });

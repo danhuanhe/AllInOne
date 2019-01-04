@@ -1,0 +1,65 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+<div>
+
+  模块：<select id="mdl">
+        <option value="访客端">访客端</option>
+        <option value="客服端">客服端</option>
+        <option value="管理端">管理端</option>
+  </select>
+</div>
+
+<div>
+    日志创建时间：
+  </div>
+  <div>
+  日志名称：<input id="name" type="text" value="登录"/>
+</div>
+<div>
+  操作类型:<input id="oprname" type="text" value="提交数据"/><!--异步返回数据 -->
+</div>
+<div>
+  数据：<input id="data" type="text" value="{name:'chx',pass:'123456'}"/>
+</div>
+<div>
+  其他<input id="note" type="text" value="其他说明"/>
+</div>
+<button id="save">save</button><button id="delete">delete</button>
+    <script src="res/js/indexdb.js"></script>
+    <script>
+
+document.getElementById("save").addEventListener("click",function(){
+  //var ilog=new LOG();return;
+  ilog.addLog({
+    module:document.getElementById("mdl").value,
+    user:"chx",
+    time:new Date().getTime(),
+    oprname:document.getElementById("oprname").value,
+    name:document.getElementById("name").value,
+    data:document.getElementById("data").value,
+    note:document.getElementById("note").value,aaa:"aaa"
+  });
+});
+
+document.getElementById("delete").addEventListener("click",function(){
+  //ilog.deleteLog(10);ilog.deleteLog(12);
+  //ilog.findLog();
+  ilog.createStore("aaaa",{a:1,b:1},'id');
+});
+
+function a(a,b,c){
+  console.log(a,b,c);
+}
+function b(e,d,r){
+  console.log(arguments);
+  //a(arguments);
+  a.apply(null,arguments);
+}
+
+b(1,2,3);
+    </script>
+  </body>
+</html>
