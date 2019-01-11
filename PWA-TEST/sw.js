@@ -1,5 +1,5 @@
 // 用于标注创建的缓存，也可以根据它来建立版本规范
-const CACHE_NAME = "_cache_v1.0.9";
+const CACHE_NAME = "_cache_v1.1.2";
 // 列举要默认缓存的静态资源，一般用于离线使用
 const urlsToCache = [
     'offline.html',
@@ -82,6 +82,7 @@ self.addEventListener('fetch', event => {
             	console.log("缓存中："+response.url);
                 return response;
             }
+            
             const fetchRequest = event.request.clone();
 			var mc=fetchRequest.url.match(/\/api\/(.+)/);
 			if(mc){
@@ -134,7 +135,7 @@ self.addEventListener('fetch', event => {
 });
 
 
-this.addEventListener('activate', event => {
+self.addEventListener('activate', event => {
 	event.waitUntil(clients.claim().then(function(){
 		console.log("可以马上监控发送请求了");
 	}));
@@ -150,12 +151,18 @@ this.addEventListener('activate', event => {
             }));
         })
     );
+
 });
 
 self.addEventListener('push', function(event) {
     // 读取 event.data 获取传递过来的数据，根据该数据做进一步的逻辑处理
     const obj = event.data.text();
 	console.log(obj);
+	self.clients.matchAll().then(clientList => {
+	    clientList.forEach(client => {
+	        client.postMessage("1111111111111");
+	    })
+	});
     // 逻辑处理示例
     if(Notification.permission === 'granted'){//&& obj.action === 'subscribe') {
         self.registration.showNotification("Hi：", {
@@ -166,21 +173,16 @@ self.addEventListener('push', function(event) {
     }
 });
 
-self.addEventListener('online', function(event) {console.log('online');
+self.addEventListener('message', function(event) {
+	console.log(event.data);
     self.clients.matchAll().then(clientList => {
 	    clientList.forEach(client => {
-	        client.postMessage({
-	        	online:true
-	        });
+	        client.postMessage({sw:22222222222});
 	    })
 	});
 });
-self.addEventListener('offline', function(event) {console.log('offline');
-    self.clients.matchAll().then(clientList => {
-	    clientList.forEach(client => {
-	        client.postMessage({
-	        	online:false
-	        });
-	    })
-	});
+
+
+self.addEventListener('notificationclick', function(event) {
+	console.log("notificationclick");
 });

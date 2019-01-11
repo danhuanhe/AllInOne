@@ -20,6 +20,18 @@ var TodoMVC = Regular.extend({
 			}.bind(this),1000);
     	
     },
+    init:function(){
+    	window.addEventListener('online', function(event) {
+    		console.log('online');
+
+			});
+			window.addEventListener('offline', function(event) {
+				console.log('offline');
+			});
+			navigator.serviceWorker.addEventListener('message', function (event) {
+			    console.log(event.data);
+			});
+    },
     getApiData:function(data){
     	 if(data.code==200){
 					this.data.list=data.result;
@@ -49,16 +61,13 @@ var TodoMVC = Regular.extend({
 			        	console.log('ServiceWorker 注册成功！作用域为: ', registration.scope);
 			        	//console.log(registration);
 			        	_this.initPUSH(registration);
-			        	window.addEventListener('message', function(ev) {
-								    console.log(ev.data);
-								});
 			        })
 			        .catch(err => console.log('ServiceWorker 注册失败: ', err));
 			}
     },
     initPUSH:function(regSW){
 	    //const applicationServerPrivateKey='70bn4no _hcA8AYrxcaZbFVaDngr30MJBB89JnecKifof1FY6Z8';
-			const applicationServerPublicKey = 'BDK6t1I6iCrbZqr_moeYrI-ONOrkt0QsBDS9bXlK2XKkTrzAcoTI7GgkWJoe6iCUMBRlL6MaqkFfSwqNuHgrMww'; 
+			const applicationServerPublicKey = 'BPoEHRc94tDm1lrJNbj0Rntq1yAJdm8RlgWDkdZ0aP8etLu9fbifJrlYoGsbW6vhazJqav-XZQU5vkr2JDDJD64'; 
     	const applicationServerKey = urlBase64ToUint8Array(applicationServerPublicKey);// 应用服务器的公钥（base64 网址安全编码）
     	// 向用户申请通知权限，用户可以选择允许或禁止
 			// Notification.requestPermission 只有在页面上才可执行，Service Worker 内部不可申请权限
@@ -134,6 +143,7 @@ var TodoMVC = Regular.extend({
 					content:this.data.content,
 					time:(new Date()).getTime()
 				});
+				navigator.serviceWorker.controller.postMessage({aaa:1111111111});
 			}else{
 				IDB.addRecord("TextDB","offlinelog",{
 					content:this.data.content,
