@@ -1,0 +1,5 @@
+<html>
+  <body>
+    ${error.stack}
+  </body>
+</html>

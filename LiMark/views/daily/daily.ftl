@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <style></style>
+  </head>
+  <body>
+    <h1>
+      ${setting.user.userName}
+    </h1>
+    <h1>
+      ${setting.user.realName}
+    </h1>
+    <h1>
+      ${setting.user.roleType}
+    </h1>
+  </body>
+</html>
