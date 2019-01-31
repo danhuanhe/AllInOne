@@ -18,7 +18,7 @@ router.get('/test', function(req, res, next) {
     });
 });
 
-router.get('/detailist',function(req, res, next){
+router.get('/api/detailist',function(req, res, next){
   try {
       dbdaily.findDaily({},function (result) {
         res.json(result);

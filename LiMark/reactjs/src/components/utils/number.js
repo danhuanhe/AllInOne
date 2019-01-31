@@ -90,7 +90,7 @@ const durationformatter = ({
     return format[0];
 
   return '0秒';
-}
+};
 
 /**
  * 工作报表中使用的特殊格式化函数，当小时数大于1时，不显示秒
@@ -109,7 +109,7 @@ export const durationformatterStatistics = ({hours, minutes, seconds}) => {
     }, 'HH小时mm分')
     : durationformatter({hours, minutes, seconds});
 
-}
+};
 
 /**
  * 把时长的数值转化为时长

@@ -41,16 +41,11 @@ export default function (source) {
   if (this.minimize && options.compileDebug === undefined) {
     options.compileDebug = false;
   }
-  console.log(this.resourcePath+"0000000000000");
-  console.log(options.templatePath+"1111111111111111");
-  console.log(options.dataPath+"222222222222222");
   const jsonPath = this.resourcePath
     .replace(/\\/g, '/')
     .replace(options.templatePath, options.dataPath)
     .replace(/(\.\w+)?$/, '.json')
     .replace(/\//g, path.sep);
-    console.log(path.sep+"3333333333333");
-    console.log(jsonPath+"444444444444");
   if ( !fs.existsSync(jsonPath) ) {
     throw new Error(`not find ftl mock data on jsonPath: ${jsonPath}, please run nei update first and check mock data on nei`);
   }

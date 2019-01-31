@@ -5,25 +5,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var React = _interopRequireWildcard(require("react"));
+let React = _interopRequireWildcard(require("react"));
 
-var _RcNotification = _interopRequireDefault(require("../Notification/RcNotification"));
+let _RcNotification = _interopRequireDefault(require("../Notification/RcNotification"));
 
-var _index = _interopRequireDefault(require("../Icon/index"));
+let _index = _interopRequireDefault(require("../Icon/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { let newObj = {}; if (obj != null) { for (let key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { let desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 /* global Promise */
-var defaultDuration = 3;
-var defaultTop;
-var messageInstance;
-var key = 1;
-var prefixCls = 'fishd-message';
-var transitionName = 'move-up';
-var getContainer;
-var maxCount;
+let defaultDuration = 3;
+let defaultTop;
+let messageInstance;
+let key = 1;
+let prefixCls = 'fishd-message';
+let transitionName = 'move-up';
+let getContainer;
+let maxCount;
 
 function getMessageInstance(callback) {
   if (messageInstance) {
@@ -51,10 +51,10 @@ function getMessageInstance(callback) {
 }
 
 function notice(content) {
-  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultDuration;
-  var type = arguments.length > 2 ? arguments[2] : undefined;
-  var onClose = arguments.length > 3 ? arguments[3] : undefined;
-  var iconType = {
+  let duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultDuration;
+  let type = arguments.length > 2 ? arguments[2] : undefined;
+  let onClose = arguments.length > 3 ? arguments[3] : undefined;
+  let iconType = {
     info: 'hints-notification',
     success: 'hints-success',
     error: 'hints-error',
@@ -67,9 +67,9 @@ function notice(content) {
     duration = defaultDuration;
   }
 
-  var target = key++;
-  var closePromise = new Promise(function (resolve) {
-    var callback = function callback() {
+  let target = key++;
+  let closePromise = new Promise(function (resolve) {
+    let callback = function callback() {
       if (typeof onClose === 'function') {
         onClose();
       }
@@ -93,7 +93,7 @@ function notice(content) {
     });
   });
 
-  var result = function result() {
+  let result = function result() {
     if (messageInstance) {
       messageInstance.removeNotice(target);
     }
@@ -107,7 +107,7 @@ function notice(content) {
   return result;
 }
 
-var _default = {
+let _default = {
   info: function info(content, duration, onClose) {
     return notice(content, duration, 'info', onClose);
   },

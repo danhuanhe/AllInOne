@@ -1,8 +1,8 @@
-var Freemarker = require('../index.js');
-var path = require('path');
-var fs = require('fs');
+let Freemarker = require('../index.js');
+let path = require('path');
+let fs = require('fs');
 
-var fm = new Freemarker({
+let fm = new Freemarker({
   viewRoot: path.join(__dirname, './template/'),
 
   options: {
@@ -10,5 +10,5 @@ var fm = new Freemarker({
   }
 });
 
-var data = fm.renderSync('test.ftl', {word : {user : {sb: "坏人"}}});
-console.log(data)
+let data = fm.renderSync('test.ftl', {word : {user : {sb: "坏人"}}});
+console.log(data);

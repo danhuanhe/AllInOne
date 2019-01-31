@@ -150,7 +150,7 @@ export const lastYear = () => {
     DAY_BEGIN(new Date(Date.now() - YEAR + DAY)),
     DAY_END(new Date(Date.now()))
   ];
-}
+};
 /**
  * 是否是今天
  * @param  {[type]}  time [description]
@@ -309,9 +309,9 @@ export const timestamp2fixedDate1 = (value) => {
   if(crossYears(value,nowTime)){  //跨年
     return timestamp2date(value);
   }else if(nowYear===newValue.getFullYear() && nowMonth===newValue.getMonth() && nowDate===newValue.getDate()){   //同日
-    return `今天 ${timestamp2date(value,'HH:mm')}`
+    return `今天 ${timestamp2date(value,'HH:mm')}`;
   }else if(nowYear===newValue.getFullYear() && nowMonth===newValue.getMonth() && nowDate===newValue.getDate()+1){ //昨日
-    return `昨天 ${timestamp2date(value,'HH:mm')}`
+    return `昨天 ${timestamp2date(value,'HH:mm')}`;
   }else {
     return timestamp2date(value,'MM-dd HH:mm');
   }

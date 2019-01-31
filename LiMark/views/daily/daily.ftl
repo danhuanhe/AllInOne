@@ -1,16 +1,14 @@
+<#include "../common/macro.ftl">
+<!DOCTYPE html>
 <html>
-  <head>
-    <style></style>
-  </head>
-  <body>
-    <h1>
-      ${setting.user.userName}
-    </h1>
-    <h1>
-      ${setting.user.realName}
-    </h1>
-    <h1>
-      ${setting.user.roleType}
-    </h1>
-  </body>
+    <@headWrapper>
+    <title>主页</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    </@headWrapper>
+    <@bodyWrapper>
+      <@setting />
+      <@serverRenderReactDOM />
+    </@bodyWrapper>
 </html>

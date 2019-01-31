@@ -9,25 +9,20 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {browserHistory} from 'react-router';
 
-import '../assets/css/index.less';
-
-
-import {Popover, Layout} from 'antd';
-const {Content, Sider} = Layout;
+import {Popover, Layout,Menu} from 'antd';
+const {Content, Sider,Header,Footer} = Layout;
 
 import MenuNav from '../components/MenuNav';
 import {config} from '../config';
 import {postMessage} from '../utils';
 
-//import './app.less';
+import '../assets/css/index.less';
+import './app.less';
 
 const moduelPerfix = 'm-app';
-
 const pathnameMap = {
   [config.ADMIN_ROUTES.HOME]: '/daily/',
 };
-const chatHome = '/chat/callcenter/page/';
-
 class App extends Component {
 
   static propTypes = {};
@@ -36,6 +31,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    const {route} = props;
+    this.state = {
+       MENUS: config.MENUS
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,39 +48,44 @@ class App extends Component {
     const {MENUS} = this.state;
     let {pathname} = location;
 
-    //外呼任务详情页面，特殊处理二级导航的选中
-    if (pathname === config.ADMIN_ROUTES.CALLTASK_DETAIL) {
-      pathname = config.ADMIN_ROUTES.CALLTASK;
-    }
-    if (pathname === config.CHAT_ROUTES.CALLTASK_DETAIL) {
-      pathname = config.CHAT_ROUTES.CALLTASK;
-    }
-
-    if (pathname === config.ADMIN_ROUTES.SETTING_IVR_EDIT) {
-      pathname = config.ADMIN_ROUTES.SETTING_IVR;
-    }
-    if (pathname === config.ADMIN_ROUTES.SETTING_ROUTER_EDIT) {
-      pathname = config.ADMIN_ROUTES.SETTING_ROUTER;
-    }
-    if (pathname === config.ADMIN_ROUTES.SETTING_OVERFLOW_EDIT) {
-      pathname = config.ADMIN_ROUTES.SETTING_OVERFLOW;
-    }
-    if (pathname === config.ADMIN_ROUTES.SETTING_TRUNK_CALLOUT) {
-      pathname = config.ADMIN_ROUTES.SETTING_TRUNK_CALLIN;
-    }
-
     return (<Layout className={`${moduelPerfix}`}>
-      <Sider width={200} className={`${moduelPerfix}-sider`}>
-        <MenuNav menu={MENUS} selected={pathname}>
-          <span>日常管理</span>
-          <Popover content={(<a href="http://help.qiyukf.com/archives/444" target="_blank">查看使用说明</a>)}>
-            <i className="iconfont icon-circle-question"/>
-          </Popover>
-        </MenuNav>
-      </Sider>
-      <Content className={`${moduelPerfix}-content`}>
-        {children}
-      </Content>
+          <Header className={`${moduelPerfix}-header`}>
+            <Layout>
+              <Sider width={200} className="logo">logologologo</Sider>
+              <Content className="menu">
+                  <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  defaultSelectedKeys={['2']}
+                  style={{ lineHeight: '64px' }}
+                >
+                  <Menu.Item key="1">日报</Menu.Item>
+                  <Menu.Item key="2">工作流</Menu.Item>
+                  <Menu.Item key="3">培训</Menu.Item>
+                </Menu>
+              </Content>
+              <Sider width={200} className="user">useruseruser</Sider>
+            </Layout>
+            
+          </Header>
+          <Layout>
+            <Sider width={200} className={`${moduelPerfix}-sider`}>
+             <Menu
+                  theme="dark"
+                  mode="inline"
+                  defaultSelectedKeys={['2']}
+                  style={{ lineHeight: '64px' }}
+                >
+                  <Menu.Item key="1">日常记录</Menu.Item>
+                  <Menu.Item key="2">创建日报</Menu.Item>
+                  <Menu.Item key="3">明细分类</Menu.Item>
+                </Menu>
+            </Sider>
+            <Content className={`${moduelPerfix}-content`}>
+            {children}
+            </Content>
+          </Layout>
+          <Footer className={`${moduelPerfix}-footer`}>Footer</Footer>
     </Layout>);
   }
 }

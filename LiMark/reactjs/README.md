@@ -123,3 +123,12 @@ run npm start and open [Pages Demo](http://localhost:8000/login/) on browser
 - react component and react container: named using hump form and uppercase characters at the beginning
 - test file: named with Component + .test + .js format
 - css: https://nsfi.github.io/blog/2017/12/06/Less%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/
+
+#遇到的坑
+以下三个目录格式要保持一致，否则自动生成的HTML文件，将没有打包后的具体业务的js文件，比如“<script src="/daily/daily.js"></script>”
+views/daily/daily.ftl
+mocks/ftl/daily/daily.json
+src/entries/daily/daily.js
+
+srcServer.js里的urlConfig.realPath="daily/daily.html" 也要与“views/daily/daily.ftl”目录对应，否则访问不到页面，因为这个文件目录根据后者自动创建的;
+

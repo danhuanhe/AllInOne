@@ -37,7 +37,11 @@ const apiProxy = proxy(ajaxPrefix, {
 // 配置开发环境下的虚拟路径到物理路径的url path映射
 const urlConfig = [
   {
-    virtualPath: '/daily/page/',
+    virtualPath: '/limark/',
+    realPath: '/daily/daily.html'//这个配置和 views/daily/daily.ftl  对应
+  },
+  {
+    virtualPath: '/limark/daily',
     realPath: '/daily/daily.html'//这个配置和 views/daily/daily.ftl  对应
   }
 ];

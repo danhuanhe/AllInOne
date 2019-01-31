@@ -22,6 +22,9 @@ const common = {
     DAILY: ADMIN_MENUS.MENU_DAILY.url,
     
   },
+  MENUS:[
+    ADMIN_MENUS.MENU_DAILY
+  ]
   // //客服端所有网站路由
   // CHAT_ROUTES: {
   //   HOME: `${chatHome}`,

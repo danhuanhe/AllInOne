@@ -1,10 +1,10 @@
 
-var path = require('path');
-var fs = require('fs');
+let path = require('path');
+let fs = require('fs');
 const uuidv4 = require('uuid/v4');
-var os = require('os');
+let os = require('os');
 
-var fmpp = require('./lib/fmpp.js');
+let fmpp = require('./lib/fmpp.js');
 
 function nop() {}
 function getTmpFileName() {
@@ -12,13 +12,13 @@ function getTmpFileName() {
 }
 
 function writeTmpFile(data, done) {
-  var fileName = getTmpFileName();
+  let fileName = getTmpFileName();
   fs.writeFile(fileName, data, function(err) {
     done(err, fileName);
   });
 }
 function writeTmpFileSync(data) {
-  var fileName = getTmpFileName();
+  let fileName = getTmpFileName();
   fs.writeFileSync(fileName, data);
   return fileName;
 }
@@ -29,10 +29,10 @@ function writeTmpFileSync(data) {
  * @param {Object} settings
  */
 function Freemarker(settings) {
-  var fmpOpts = settings.options || {};
+  let fmpOpts = settings.options || {};
 
   if(!settings.viewRoot) {
-    throw new Error('Freemarker: Need viewRoot param.')
+    throw new Error('Freemarker: Need viewRoot param.');
   }
   if(!fmpOpts.sourceRoot) {
     fmpOpts.sourceRoot = settings.viewRoot;
@@ -57,10 +57,10 @@ function Freemarker(settings) {
  * @return {String} result
  */
 function generateConfiguration(data, done) {
-  var sName = Object.keys(data || {});
-  var result = [];
+  let sName = Object.keys(data || {});
+  let result = [];
   sName.forEach(function(x) {
-    var value = data[x];
+    let value = data[x];
     if(typeof value !== 'boolean') {
       result.push(x + ': ' + value);
     } else if(value === true) {
@@ -76,23 +76,23 @@ function generateConfiguration(data, done) {
 
 
 Freemarker.prototype.render = function(tpl, data, done) {
-  var dataTdd = convertDataModel(data);
-  var tplFile = path.join(this.viewRoot, tpl).replace(/\\/g, '/');
+  let dataTdd = convertDataModel(data);
+  let tplFile = path.join(this.viewRoot, tpl).replace(/\\/g, '/');
 
   // Make configuration file for fmpp
-  var cfgDataObject = this.options;
+  let cfgDataObject = this.options;
   cfgDataObject.data = dataTdd;
 
   // Set output file
-  var tmpFile = getTmpFileName();
+  let tmpFile = getTmpFileName();
   cfgDataObject.outputFile = tmpFile;
 
-  var cfgContent = generateConfiguration(cfgDataObject);
+  let cfgContent = generateConfiguration(cfgDataObject);
   writeTmpFile(cfgContent, function getCfgFileName(err, cfgFile) {
     if(err) {
       return done(err);
     }
-    var args = [tplFile, '-C', cfgFile];
+    let args = [tplFile, '-C', cfgFile];
 
     fmpp.run(args, function getFMPPResult(err, respData) {
       if(err) {
@@ -112,24 +112,24 @@ Freemarker.prototype.render = function(tpl, data, done) {
 };
 
 Freemarker.prototype.renderSync = function(tpl, data) {
-  var dataTdd = convertDataModel(data);
-  var tplFile = path.join(this.viewRoot, tpl).replace(/\\/g, '/');
+  let dataTdd = convertDataModel(data);
+  let tplFile = path.join(this.viewRoot, tpl).replace(/\\/g, '/');
 
   // Make configuration file for fmpp
-  var cfgDataObject = this.options;
+  let cfgDataObject = this.options;
   cfgDataObject.data = dataTdd;
 
   // Set output file
-  var tmpFile = getTmpFileName();
+  let tmpFile = getTmpFileName();
   cfgDataObject.outputFile = tmpFile;
 
-  var cfgContent = generateConfiguration(cfgDataObject);
+  let cfgContent = generateConfiguration(cfgDataObject);
 
-  var output = null;
-  var result = '';
+  let output = null;
+  let result = '';
   try {
-    var cfgFile = writeTmpFileSync(cfgContent);
-    var args = [tplFile, '-C', cfgFile];
+    let cfgFile = writeTmpFileSync(cfgContent);
+    let args = [tplFile, '-C', cfgFile];
     output = fmpp.runSync(args);
 
     // Wait for tmpFile created

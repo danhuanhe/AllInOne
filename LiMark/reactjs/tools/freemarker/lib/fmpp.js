@@ -1,16 +1,16 @@
-var child = require('child_process');
-var exec = child.exec;
-var execSync = child.execSync;
+let child = require('child_process');
+let exec = child.exec;
+let execSync = child.execSync;
 
-var path = require('path');
-var fs = require('fs');
+let path = require('path');
+let fs = require('fs');
 
-var fmppName = process.platform === 'win32' ? 'fmpp.bat' : 'fmpp';
-var fmpp = path.join(__dirname, '../fmpp', fmppName);
+let fmppName = process.platform === 'win32' ? 'fmpp.bat' : 'fmpp';
+let fmpp = path.join(__dirname, '../fmpp', fmppName);
 
 function run(args, done) {
 
-  var command = fmpp + ' ' + args.join(' ');
+  let command = fmpp + ' ' + args.join(' ');
 
   exec(command,
     function(error, stdout, stderr) {
@@ -21,7 +21,7 @@ function run(args, done) {
 }
 
 function runSync(args) {
-  var command = fmpp + ' ' + args.join(' ');
+  let command = fmpp + ' ' + args.join(' ');
 
   if(execSync) {
     // On node.js v0.12, there comes execSync() method which exactly we want
@@ -31,7 +31,7 @@ function runSync(args) {
     exec(command + ' 2>&1 1>output && echo done! > done');
     while(!fs.existsSync('done')) {}
 
-    var output = fs.readFileSync('output');
+    let output = fs.readFileSync('output');
     fs.unlinkSync('output');
     fs.unlinkSync('done');
 

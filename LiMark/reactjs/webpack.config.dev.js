@@ -31,6 +31,8 @@ travelDir(".."+viewsPath, mockPath);
 const argvFilter = getReplParams('filter');
 const getHtmlWebpackPlugin = () => {
   // generate ftl plugin
+  console.log("argvFilter",argvFilter);
+  console.log("mockPath",mockPath);
   const htmlWebpackPlugin = mockPath
     // skip /common/ directory
     .filter((pt) => {
@@ -50,6 +52,10 @@ const getHtmlWebpackPlugin = () => {
         chunks: [chunkName]
       });
     });
+    for(var a=0;a<htmlWebpackPlugin.length;a++){
+      console.log(htmlWebpackPlugin[a]);
+    }
+    
   return htmlWebpackPlugin;
 };
 // more info: https://github.com/isaacs/node-glob
@@ -71,7 +77,7 @@ if ( argvFilter ) {
     filteredNewEntries = null;
   }
 }
-
+console.log("newEntries",newEntries);
 export default {
   "mode": process.env.NODE_ENV === "production" ? "production" : "development",
   // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps

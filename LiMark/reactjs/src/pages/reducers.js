@@ -22,13 +22,13 @@ const component = (state = app.component, action) => {
 
 //其他模块的reducers
 import components from './components/reducers';
-import DailyData from './Daily/reducers';
+import Daily from './Daily/reducers';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
   component,
   components,
-  DailyData
+  Daily
 
 });
 
