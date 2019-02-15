@@ -1,7 +1,7 @@
 //连接字符串
 var config = {
     mongodbConnStr: 'mongodb://localhost:27017',//mongodb数据库链接字符串,
-    dbName:"dbchx",
+    dbName:"limark",
     //docDir: "D:/TestCodes/msite/webapp1/",//网站所在的磁盘目录
     port:8000,
     // //网站默认的路由规则

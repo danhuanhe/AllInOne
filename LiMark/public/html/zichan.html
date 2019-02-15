@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			input{width:80px;}
+			div p label{font-weight: 600;}
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<p><label>未来府：</label></p>
+			<div>
+				<label>面积：</label><span><input type="text" id="wlfMJ" value="80.5" readonly="readonly" disabled="disabled"/></span>
+				<label>单价：</label><span><input type="number" id="wlfDJ" value="23000" /></span>=<b id="wlfZJ"></b>-
+				<label>剩余贷款：</label><span><input type="number" id="wlfDK" value="650000" /></span>-
+				<label>按约定给春金0.1：</label><span><input type="text" id="wlfCJ" readonly="readonly" disabled="disabled" /></span>=<b id="bWLF"></b>
+			</div>
+		</div>
+		<div>
+			<p><label>IOT：</label></p>
+			<div>
+				<label>总价：</label><span><input type="number" id="iotZJ" value="720000" /></span>-
+				<label>剩余贷款：</label><span><input type="number" id="iotDK" value="200000" /></span>=<b id="bIOT"></b>
+			</div>
+		</div>
+		<div>
+			<p><label>中兴和园：</label></p>
+			<div>
+				<label>面积：</label><span><input type="text" id="hyMJ" value="82.6" readonly="readonly" disabled="disabled"/></span>
+				<label>单价：</label><span><input type="number" id="hyDJ" value="32000" /></span>=<b id="hyZJ"></b>-
+				<label>剩余贷款：</label><span><input type="number" id="hyDK" value="600000" /></span>-
+				<label>还爸妈当初首付：</label><span><input type="number" id="hyHFM" value="200000"  readonly="readonly" disabled="disabled"/></span>=<b id="bHY"></b>
+			</div>
+		</div>
+		
+		<div>
+			<p><label>其他资产：</label></p>
+			<div>
+				<label>负债：</label><span>-<input type="number" id="qtFZ" value="720000" /></span>
+				<label>存款：</label><span>+<input type="number" id="qtCK" value="50000" /></span>
+				<label>汽车：</label><span>+<input type="number" id="qtQC" value="50000" /></span>
+			</div>
+		</div>
+		<div>
+			<p><label>净资产：</label><span id="jzc"></span></p>
+		</div>
+		<div>
+			<button id="btn">计算</button>
+		</div>
+		<script>
+			function JS(){
+				var wlfMJ=+document.getElementById("wlfMJ").value;
+				var wlfDJ=+document.getElementById("wlfDJ").value;
+				var wlfDK=+document.getElementById("wlfDK").value;
+				var wlfBL=0.1;//+document.getElementById("wlfBL").value;
+				
+				var hyMJ=+document.getElementById("hyMJ").value;
+				var hyDJ=+document.getElementById("hyDJ").value;
+				var hyDK=+document.getElementById("hyDK").value;
+				var hyHFM=+document.getElementById("hyHFM").value;
+				
+				var iotZJ=+document.getElementById("iotZJ").value;
+				var iotDK=+document.getElementById("iotDK").value;
+				
+				var qtFZ=+document.getElementById("qtFZ").value;
+				var qtCK=+document.getElementById("qtCK").value;
+				var qtQC=+document.getElementById("qtQC").value;
+				
+				var jzc=document.getElementById("jzc");
+				
+				var wlfJZC=wlfMJ*wlfDJ-wlfDK;
+				document.getElementById("wlfZJ").innerHTML=wlfMJ*wlfDJ;
+				document.getElementById("bWLF").innerHTML=wlfJZC-wlfBL*wlfJZC;
+				document.getElementById("wlfCJ").value=wlfBL*wlfJZC;
+				
+				document.getElementById("bIOT").innerHTML=iotZJ-iotDK;
+				
+				document.getElementById("hyZJ").innerHTML=hyMJ*hyDJ;
+				document.getElementById("bHY").innerHTML=hyMJ*hyDJ-hyDK-hyHFM;
+				
+				jzc.innerHTML=(wlfJZC-wlfBL*wlfJZC)+(hyMJ*hyDJ-hyDK-hyHFM)+(iotZJ-iotDK)-qtFZ+qtCK+qtQC;
+			}
+			
+			document.getElementById("btn").addEventListener("click",JS);
+		</script>
+	</body>
+</html>

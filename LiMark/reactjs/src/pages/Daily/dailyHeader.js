@@ -15,8 +15,10 @@ class DailyHeader extends Component{
   render() {
     
     return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>创建日报</Button>
+      <div className="m-header">
+        <div>111</div>
+        <div><Button type="primary" onClick={this.showModal}>创建日报</Button></div>
+        
       </div>
     );
   }

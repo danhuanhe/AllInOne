@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+import {Popover, Layout,Menu} from 'antd';
+const {Content, Sider,Header,Footer} = Layout;
+
 import DailyList from './dailyList';
 import DailyHeader from './dailyHeader';
-import CreateDailyModal from './components/createDailyModal';
+import CreateDailyModal from './components/dailyModal';
 import './index.less';
 
 
@@ -17,23 +20,30 @@ class Daily extends Component{
   hideModal=(visible)=>{
     this.setState({visible:false});
   }
-   render(){
+
+  handleCreate=(fromdata)=>{
+
+    console.log(fromdata);
+    this.setState({visible:false});
+  }
+
+  render(){
      const { visible, edit } = this.state;
-     return (<div className="m-daily">
-     <div className="header">
+     return (<Layout className="m-daily">
+     <Header>
        <DailyHeader showModal={this.showModal}/>
-     </div>
-     <div className="table-content">
+     </Header>
+     <Content className="table-content">
        <DailyList/>
-     </div>
+     </Content>
 
      <CreateDailyModal 
             edit={edit}
             visible={visible}
-            onCreate={this.handleCreate} 
-            onCancel={this.hideModal}
+            handleCreate={this.handleCreate} 
+            hideModal={this.hideModal}
             />
-   </div>);
+   </Layout>);
    }
 }
 

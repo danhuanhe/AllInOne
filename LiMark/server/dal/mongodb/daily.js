@@ -10,7 +10,7 @@ var dailydoc ={
   "sumMoney" : 0,
   "content" : "无"
 };
-var collname="limark";
+var collname="daily";
 var dbhelper = require('../../dbdriver/mongodb');
 
 exports.findDaily = function (where,cb) {
