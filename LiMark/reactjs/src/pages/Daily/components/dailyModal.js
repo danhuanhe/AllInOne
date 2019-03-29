@@ -39,20 +39,20 @@ class DailyModal extends Component{
         items:[
           {
             "key":0,
-            "money" : 0,
+            "money" : 12121,
             "time" : 0,
-            "place" : "",
-            "persons" : "",
-            "content" : "无",
+            "place" : "3435",
+            "persons" : "dfgdfgfd",
+            "content" : "无4534534",
             "type" : 0,
             "level" : 0
           },{
             "key":1,
-            "money" : 0,
+            "money" : 2323,
             "time" : 0,
-            "place" : "",
-            "persons" : "",
-            "content" : "无",
+            "place" : "setewr",
+            "persons" : "twt",
+            "content" : "dhdfhdfhdfh",
             "type" : 0,
             "level" : 0,
             _edit:1
@@ -67,9 +67,10 @@ class DailyModal extends Component{
     this.state.detail.date=moment._d.getTime();
   }
   onSave=()=>{
-    console.log(this.props.form);
-    console.log(this.itemForm);
-    this.props.handleCreate(this.state.detail);
+    //console.log(this.itemForm.props.form);
+    console.log(this.itemForm.props.form.getFieldsValue());
+    console.log(this.state.detail);
+    //this.props.handleCreate(this.state.detail);
   }
 
   render(){
@@ -117,7 +118,7 @@ class DailyModal extends Component{
         <hr/>
         {detail.items.map(item =>
         item._edit?
-        <DailyItem item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.key}>
+        <DailyItem key={item.key} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.key}>
           11111111
         </div>)}
       </Modal>

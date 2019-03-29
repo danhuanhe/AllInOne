@@ -60,7 +60,7 @@ const DailyTable = props => {
 
   const tableProps = {
     columns: columns,
-    rowKey: 'id',
+    rowKey: '_id',
     dataSource: props.DailyList.list,
     pagination: {
       total: props.DailyList.totalNum,

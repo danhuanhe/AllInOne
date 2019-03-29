@@ -34,9 +34,10 @@ class DailyItem extends Component{
             {getFieldDecorator('money', {
               rules: [{ 
                 required: true 
-                }]
+                }],
+                initialValue:item.money
             })(
-              <InputNumber min={1} max={1000000} initialValue={item.money} />
+              <InputNumber min={1} max={1000000} />
             )}
           </FormItem>
           <FormItem label="时间" {...FormLayout}>
@@ -55,7 +56,8 @@ class DailyItem extends Component{
                 },
                 { 
                   whitespace: true,
-                }]
+                }],
+                initialValue:item.place
             })(
               <Input placeholder="请输入中继名称，不超过20个字" autoComplete="off" maxLength={MAX_NAME_LEN} />
             )}
@@ -67,7 +69,8 @@ class DailyItem extends Component{
                 },
                 { 
                   whitespace: true,
-                }]
+                }],
+                initialValue:item.persons
             })(
               <Input placeholder="请输入人物" autoComplete="off" maxLength={MAX_NAME_LEN} />
             )}
@@ -75,11 +78,12 @@ class DailyItem extends Component{
           <FormItem label="内容" {...FormLayout}>
             {getFieldDecorator('content', {
               rules: [{ 
-                required: true, whitespace: true, message: '请输入人物' 
+                required: true, whitespace: true, message: '请输入内容' 
                 },
                 { 
                   whitespace: true,
-                }]
+                }],
+                initialValue:item.content
             })(
               <Input.TextArea placeholder="请输入内容" autoComplete="off" maxLength={MAX_NAME_LEN} />
             )}
