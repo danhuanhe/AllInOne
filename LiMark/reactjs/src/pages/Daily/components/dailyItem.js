@@ -10,7 +10,7 @@ const modulePrefix = 'm-daily-modal';
 
 const FormLayout = { labelCol: { span: 3 }, wrapperCol: { span: 13, offset: 0 } };
 const detailTypeOption = [{key: 0, label: '其他'}, {key: 1, label: '衣食'}, {key: 2, label: '住行'}, {key: 3, label: '教育'}, {key: 4, label: '学习'}, {key: 5, label: '零食'}, {key: 6, label: '医药'}, {key: 7, label: '养老'}, {key: 8, label: '养生'} ];
-const levelOption = [ {key: 1, label: '可避免'}, {key: 1, label: '一般'}, {key: 2, label: '重要'}, {key: 3, label: '必须'} ];
+const levelOption = [ {key: 1, label: '可避免'}, {key: 2, label: '一般'}, {key: 3, label: '重要'}, {key: 4, label: '必须'} ];
 
 class DailyItem extends Component{
 
@@ -25,11 +25,25 @@ class DailyItem extends Component{
     }
   }
 
+  onSave=()=>{
+    //console.log(this.itemForm.props.form);
+    console.log(this.props.form.getFieldsValue());
+    //console.log(this.state.detail);
+    const itemData=this.props.form.getFieldsValue();
+    if(itemData.time){
+      itemData.time=itemData.time._d.getTime();
+    }else{
+      itemData.time=new Date().getTime();
+    }
+    
+    this.props.handleSaveItem(itemData);
+  }
+
   render(){
     const { getFieldDecorator } = this.props.form;
     const {item} = this.props;
     return (
-        <Form ref="items" key={item.key} layout="horizontal">
+        <Form ref="from" key={item.key} layout="horizontal">
           <FormItem label="金额" {...FormLayout}>
             {getFieldDecorator('money', {
               rules: [{ 
@@ -88,7 +102,7 @@ class DailyItem extends Component{
               <Input.TextArea placeholder="请输入内容" autoComplete="off" maxLength={MAX_NAME_LEN} />
             )}
           </FormItem>
-          <FormItem label="分类" className="form-item-type"
+          <FormItem label="分类"
                   {...FormLayout}
               >
                 {getFieldDecorator('type', {
@@ -102,7 +116,7 @@ class DailyItem extends Component{
                   </Select>
                 )}
             </FormItem>
-            <FormItem label="重要程度" className="form-item-type"
+            <FormItem label="重要程度"
                   {...FormLayout}
               >
                 {getFieldDecorator('level', {
@@ -115,6 +129,11 @@ class DailyItem extends Component{
                     {levelOption.map(item => <Select.Option key={item.key}>{item.label}</Select.Option>)}
                   </Select>
                 )}
+            </FormItem>
+            <FormItem className="form-btn"
+                  {...FormLayout}
+              >
+               <Button onClick={this.onSave}>保存</Button>
             </FormItem>
         </Form>
     );

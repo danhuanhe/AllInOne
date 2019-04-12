@@ -8,6 +8,8 @@ export const SET_TOTAL_NUM ='DAILY/SET_TOTAL_NUM';
 export const SET_CURRENT ='DAILY/SET_CURRENT';
 export const SET_LIST_PARAMS ='DAILY/SET_LIST_PARAMS';
 export const SET_LIST_LOADING ='DAILY/SET_LIST_PARAMS';
+
+export const SET_SAVE_RESULT ='DAILY/SET_SAVE_RESULT';
 //setCurrent,setTotalNum,getDailyList,setListParams
 /**
  * ActionsTypes END
@@ -33,17 +35,38 @@ export const setListParams = params => {
   return {type: SET_LIST_PARAMS, params};
 };
 
+export const setSaveResult = result => {
+  return {type: SET_SAVE_RESULT, result};
+};
+
 export const getDailyList = (params = {}) => {
   return dispatch => {
     dispatch(setListLoading(true));
     request({
-      url: '/api/detailist',
+      url: '/api/dailylist',
       method: 'GET',
       params: params
     }).then(json => {
       dispatch(setListLoading(false));
       dispatch(setDailyList(json.data));
       dispatch(setTotalNum(json.total||json.data.length));
+    }).catch(err => {
+      message.error(err.message || '网络错误，请刷新~');
+    });
+  };
+};
+
+export const saveDaily = (data = {},fn) => {
+  return dispatch => {
+    request({
+      url: '/api/daily/save',
+      method: 'POST',
+      data: data
+    }).then(json => {
+      dispatch(setSaveResult(json.result));
+      if(fn){
+        fn(json);
+      }
     }).catch(err => {
       message.error(err.message || '网络错误，请刷新~');
     });

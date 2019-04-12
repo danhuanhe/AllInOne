@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Popover, Layout,Menu} from 'antd';
 const {Content, Sider,Header,Footer} = Layout;
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {setCurrent,setTotalNum,getDailyList,saveDaily} from "./actions";
+
 import DailyList from './dailyList';
 import DailyHeader from './dailyHeader';
 import CreateDailyModal from './components/dailyModal';
@@ -25,6 +30,8 @@ class Daily extends Component{
 
     console.log(fromdata);
     this.setState({visible:false});
+    const {saveDaily} = this.props;
+    saveDaily(fromdata);
   }
 
   render(){
@@ -47,4 +54,17 @@ class Daily extends Component{
    }
 }
 
-export default Daily;
+const mapStateToProps = state => {
+  return {
+    Daily: state.Daily
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return Object.assign({}, bindActionCreators({
+    setCurrent,setTotalNum,getDailyList,saveDaily
+  }, dispatch));
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Daily);
+

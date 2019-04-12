@@ -4,7 +4,8 @@ import {
   SET_LIST_LOADING,
   SET_TOTAL_NUM,
   SET_CURRENT,
-  SET_LIST_PARAMS
+  SET_LIST_PARAMS,
+  SET_SAVE_RESULT
 } from "./actions";
 
 const DailyList = (state = {
@@ -31,4 +32,16 @@ const DailyList = (state = {
 
 };
 
-export default combineReducers({DailyList});
+const Daily = (state = {
+    result: null
+}, action) => {
+  switch (action.type) {
+    case SET_SAVE_RESULT:
+        return {...state, result: action.result};
+    default:
+      return state;
+  }
+
+};
+
+export default combineReducers({Daily,DailyList});

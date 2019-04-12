@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var dailyRouter = require('./routes/daily');
 var Freemarker=require('./freemarker');
 
 var p__dirname=__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
@@ -35,6 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(p__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', dailyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

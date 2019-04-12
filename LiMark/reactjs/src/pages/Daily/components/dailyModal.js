@@ -68,9 +68,21 @@ class DailyModal extends Component{
   }
   onSave=()=>{
     //console.log(this.itemForm.props.form);
-    console.log(this.itemForm.props.form.getFieldsValue());
+   // console.log(this.itemForm.props.form.getFieldsValue());
     console.log(this.state.detail);
-    //this.props.handleCreate(this.state.detail);
+    this.props.handleCreate(JSON.stringify(this.state.detail));
+  }
+
+  handleSaveItem=(data)=>{
+     let crtEdit=this.state.detail.items.find((a)=>a._edit==1);
+     if(crtEdit){
+      crtEdit=Object.assign(crtEdit,data);
+      crtEdit._edit=0;
+      console.log(crtEdit);
+      this.setState({
+        detail:this.state.detail
+      });
+     }
   }
 
   render(){
@@ -118,8 +130,23 @@ class DailyModal extends Component{
         <hr/>
         {detail.items.map(item =>
         item._edit?
-        <DailyItem key={item.key} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.key}>
-          11111111
+        <DailyItem handleSaveItem={this.handleSaveItem} key={item.key} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.key}>
+          <div className="items-show">
+          <div className="item-show">
+            <dl><dt>金额：</dt><dd>{item.money}</dd></dl>
+            <dl><dt>时间：</dt><dd>{item.time}</dd></dl>
+          </div>
+          <div className="item-show">
+            <dl><dt>地点：</dt><dd>{item.place}</dd></dl>
+            <dl><dt>人物：</dt><dd>{item.persons}</dd></dl>
+          </div>
+          <div className="item-show">
+            <dl><dt>内容：</dt><dd>{item.content}</dd></dl>
+          </div>
+          <div className="item-show">
+          <dl><dt>分类：</dt><dd>{item.type}</dd></dl><dl><dt>重要程度：</dt><dd>{item.level}</dd></dl>
+          </div>
+          </div>
         </div>)}
       </Modal>
     );
