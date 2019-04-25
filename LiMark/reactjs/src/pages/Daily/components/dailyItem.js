@@ -5,12 +5,9 @@ import { Form, Modal, Button, Input, Switch, Select,DatePicker,InputNumber } fro
 const FormItem = Form.Item;
 
 import { MAX_NAME_LEN } from '../../constants';
-
-const modulePrefix = 'm-daily-modal';
+import { DAILY_ITEM_TYPE,DAILY_ITEM_LEVEL } from '../constants';
 
 const FormLayout = { labelCol: { span: 3 }, wrapperCol: { span: 13, offset: 0 } };
-const detailTypeOption = [{key: 0, label: '其他'}, {key: 1, label: '衣食'}, {key: 2, label: '住行'}, {key: 3, label: '教育'}, {key: 4, label: '学习'}, {key: 5, label: '零食'}, {key: 6, label: '医药'}, {key: 7, label: '养老'}, {key: 8, label: '养生'} ];
-const levelOption = [ {key: 1, label: '可避免'}, {key: 2, label: '一般'}, {key: 3, label: '重要'}, {key: 4, label: '必须'} ];
 
 class DailyItem extends Component{
 
@@ -37,6 +34,10 @@ class DailyItem extends Component{
     }
     
     this.props.handleSaveItem(itemData);
+  }
+
+  onCancel=()=>{
+    this.props.handleCancelItem(this.props.item);
   }
 
   render(){
@@ -67,9 +68,6 @@ class DailyItem extends Component{
             {getFieldDecorator('place', {
               rules: [{ 
                 required: true, whitespace: true, message: '请输入地点' 
-                },
-                { 
-                  whitespace: true,
                 }],
                 initialValue:item.place
             })(
@@ -80,9 +78,6 @@ class DailyItem extends Component{
             {getFieldDecorator('persons', {
               rules: [{ 
                 required: true, whitespace: true, message: '请输入人物' 
-                },
-                { 
-                  whitespace: true,
                 }],
                 initialValue:item.persons
             })(
@@ -92,11 +87,8 @@ class DailyItem extends Component{
           <FormItem label="内容" {...FormLayout}>
             {getFieldDecorator('content', {
               rules: [{ 
-                required: true, whitespace: true, message: '请输入内容' 
-                },
-                { 
-                  whitespace: true,
-                }],
+                 whitespace: true, message: '请输入内容' 
+                },],
                 initialValue:item.content
             })(
               <Input.TextArea placeholder="请输入内容" autoComplete="off" maxLength={MAX_NAME_LEN} />
@@ -107,12 +99,12 @@ class DailyItem extends Component{
               >
                 {getFieldDecorator('type', {
                   rules: [
-                    { required: true, message: '请选择分类' },
-                  ]
+                    {message: '请选择分类' },
+                  ],initialValue:item.type
                 })(
                   <Select 
                     placeholder="请选择分类">
-                    {detailTypeOption.map(item => <Select.Option key={item.key}>{item.label}</Select.Option>)}
+                    {DAILY_ITEM_TYPE.map(item => <Select.Option value={item.key} key={item.key}>{item.label}</Select.Option>)}
                   </Select>
                 )}
             </FormItem>
@@ -121,19 +113,20 @@ class DailyItem extends Component{
               >
                 {getFieldDecorator('level', {
                   rules: [
-                    { required: true, message: '请选择重要程度' },
-                  ]
+                    { message: '请选择重要程度' },
+                  ],initialValue:item.level
                 })(
                   <Select 
                     placeholder="请选择重要程度">
-                    {levelOption.map(item => <Select.Option key={item.key}>{item.label}</Select.Option>)}
+                    {DAILY_ITEM_LEVEL.map(item => <Select.Option value={item.key} key={item.key}>{item.label}</Select.Option>)}
                   </Select>
                 )}
             </FormItem>
-            <FormItem className="form-btn"
+            <FormItem className="ant-form-item-btn" label="  "
                   {...FormLayout}
               >
-               <Button onClick={this.onSave}>保存</Button>
+               <Button onClick={this.onSave} size="small">保存</Button>
+               <Button onClick={this.onCancel} size="small">取消</Button>
             </FormItem>
         </Form>
     );

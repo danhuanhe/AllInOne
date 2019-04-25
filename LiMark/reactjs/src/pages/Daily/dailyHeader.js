@@ -12,12 +12,16 @@ class DailyHeader extends Component{
     const {showModal} = this.props;
     showModal();
   }
+  delSelects=()=>{
+    const {deleteDailys,selectedRows} = this.props;
+    deleteDailys(selectedRows);
+  }
   render() {
     
     return (
       <div className="m-header">
-        <div>111</div>
-        <div><Button type="primary" onClick={this.showModal}>创建日报</Button></div>
+        <div className="tit">日常记录</div>
+        <div className="btns"><Button type="primary" onClick={this.showModal}>创建日报</Button><Button disabled={this.props.selectedRows.length<1} type="primary" onClick={this.delSelects}>删除</Button></div>
         
       </div>
     );

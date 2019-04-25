@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Form, Modal, Button, Input, Switch, Select,DatePicker,InputNumber } from 'antd';
+import { Form, Modal, Button, Input, Switch, Select,DatePicker,InputNumber,Icon } from 'antd';
 const FormItem = Form.Item;
 
-import { MAX_NAME_LEN } from '../../constants';
+import { DAILY_TYPE } from '../constants';
 import DailyItem from './dailyItem';
 const modulePrefix = 'm-daily-modal';
 
 const FormLayout = { labelCol: { span: 3 }, wrapperCol: { span: 13, offset: 0 } };
-const FormLayout1 = { labelCol: { span: 3 }, wrapperCol: { span: 13, offset: 0 } };
-const dailyTypeOption = [ {key: 0, label: '综合'}, {key: 1, label: '生活'}, {key: 2, label: '工作'}, {key: 3, label: '账本'} ];
-const detailTypeOption = [{key: 0, label: '其他'}, {key: 1, label: '衣食'}, {key: 2, label: '住行'}, {key: 3, label: '教育'}, {key: 4, label: '学习'}, {key: 5, label: '零食'}, {key: 6, label: '医药'}, {key: 7, label: '养老'}, {key: 8, label: '养生'} ];
-const levelOption = [ {key: 1, label: '可避免'}, {key: 1, label: '一般'}, {key: 2, label: '重要'}, {key: 3, label: '必须'} ];
 
 class DailyModal extends Component{
 
@@ -37,24 +33,15 @@ class DailyModal extends Component{
         "sumMoney" : 0,
         "content" : "无",
         items:[
-          {
-            "key":0,
-            "money" : 12121,
+         {
+            "id":1,
+            "money" : 0,
             "time" : 0,
-            "place" : "3435",
-            "persons" : "dfgdfgfd",
-            "content" : "无4534534",
+            "place" : "",
+            "persons" : "",
+            "content" : "",
             "type" : 0,
-            "level" : 0
-          },{
-            "key":1,
-            "money" : 2323,
-            "time" : 0,
-            "place" : "setewr",
-            "persons" : "twt",
-            "content" : "dhdfhdfhdfh",
-            "type" : 0,
-            "level" : 0,
+            "level" : 2,
             _edit:1
           }
         ]
@@ -85,6 +72,47 @@ class DailyModal extends Component{
      }
   }
 
+  handleCancelItem=(item)=>{
+    this.editItem(item,false);
+  }
+  newItem=()=>{
+    this.state.detail.items.map((crt)=>{
+      crt._edit=0;
+    });
+    this.state.detail.items.unshift({
+      "id":new Date().getTime(),
+      "money" : 0,
+      "time" : 0,
+      "place" : "",
+      "persons" : "",
+      "content" : "",
+      "type" : 0,
+      "level" : 0,
+      _edit:1
+    });
+    this.setState({
+      detail:this.state.detail
+    });
+  }
+  editItem=(item,setval)=>{
+     this.state.detail.items.map((crt)=>{
+       crt._edit=0;
+       if(item.id==crt.id){
+        crt._edit=setval==undefined?1:setval;
+       }
+     });console.log(this.state.detail);
+     this.setState({
+      detail:this.state.detail
+    });
+  }
+
+  delItem=(index)=>{
+     this.state.detail.items.splice(index,1);
+     this.setState({
+      detail:this.state.detail
+    });
+  }
+
   render(){
     const { getFieldDecorator } = this.props.form;
     const {hideModal, visible, edit } = this.props;
@@ -95,6 +123,7 @@ class DailyModal extends Component{
         title={(edit ? '编辑': '新增')}
         width={760}
         visible={visible}
+        onClose={hideModal}
         footer={
         <div>
           <Button key="back" onClick={hideModal} className="u-btn-normal" size="large">取消</Button>
@@ -102,6 +131,7 @@ class DailyModal extends Component{
         </div>
         }
       >
+       
         <Form>
           <FormItem label="日期" {...FormLayout}>
             {getFieldDecorator('date', {
@@ -117,21 +147,28 @@ class DailyModal extends Component{
               >
                 {getFieldDecorator('type', {
                   rules: [
-                    { required: true, message: '请选择中继路径' },
-                  ]
+                    { required: true, message: '请选择类型' },
+                  ],initialValue:detail.type
                 })(
-                  <Select initialValue={detail.type} 
-                    placeholder="请选择中继路径">
-                    {dailyTypeOption.map(item => <Select.Option key={item.key}>{item.label}</Select.Option>)}
+                  <Select  
+                    placeholder="请选择类型">
+                    {DAILY_TYPE.map(item => <Select.Option value={item.key} key={item.key}>{item.label}</Select.Option>)}
                   </Select>
                 )}
             </FormItem>
         </Form>
         <hr/>
-        {detail.items.map(item =>
+        <div className="icon-new-wraper">
+        <span className="icon-new" onClick={this.newItem}><Icon type="plus-circle" />新增明细</span>
+        </div>
+        {detail.items.map((item,index) =>
         item._edit?
-        <DailyItem handleSaveItem={this.handleSaveItem} key={item.key} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.key}>
+        <DailyItem handleSaveItem={this.handleSaveItem} handleCancelItem={this.handleCancelItem} key={item.id} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.id}>
           <div className="items-show">
+          <span className="links">
+          <a onClick={()=>{this.editItem(item);}}>编辑</a>
+          <a onClick={()=>{this.delItem(index);}}>删除</a>
+          </span>
           <div className="item-show">
             <dl><dt>金额：</dt><dd>{item.money}</dd></dl>
             <dl><dt>时间：</dt><dd>{item.time}</dd></dl>
@@ -144,10 +181,12 @@ class DailyModal extends Component{
             <dl><dt>内容：</dt><dd>{item.content}</dd></dl>
           </div>
           <div className="item-show">
-          <dl><dt>分类：</dt><dd>{item.type}</dd></dl><dl><dt>重要程度：</dt><dd>{item.level}</dd></dl>
+          <dl><dt>分类：</dt><dd>{item.type}</dd></dl>
+          <dl><dt>重要程度：</dt><dd>{item.level}</dd></dl>
           </div>
           </div>
         </div>)}
+       
       </Modal>
     );
   }

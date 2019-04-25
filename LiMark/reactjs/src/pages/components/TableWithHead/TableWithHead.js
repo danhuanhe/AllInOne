@@ -23,6 +23,16 @@ class TableWithHead extends PureComponent {
       this.props.onSelectRestChange(false);
     }
   }
+  componentWillReceiveProps(nextProps) {
+    if(this.props.tableProps.listRefreshFlag!=nextProps.tableProps.listRefreshFlag){
+      this.setState({selectedRows:[]});
+    }
+  }
+  setSelectedRows=(rows)=>{
+    this.setState({
+      selectedRows:rows
+    });
+  }
 
   handleSelectRest = () => {
     this.setState({restSelected: true});
@@ -48,7 +58,7 @@ class TableWithHead extends PureComponent {
       className = ''
     } = this.props;
     const selectedNum = this.state.selectedRows.length;
-
+    let idName=this.props.idName||"id";
     let rest = null;
     if (this.state.restSelected) {
       rest = <span onClick={this.handleCancelSelectRest}>取消</span>;
@@ -76,7 +86,7 @@ class TableWithHead extends PureComponent {
               this.setState({selectedRows});
               rowSelection.onChange && rowSelection.onChange(selectedRowKeys, selectedRows);
             },
-            selectedRowKeys: rowSelection.selectedRowKeys || this.state.selectedRows.map(({id}) => id)
+            selectedRowKeys: rowSelection.selectedRowKeys || this.state.selectedRows.map((rowDD) =>rowDD[idName])
           }}
           onChange={(...args) => {
             this.setState({selectedRows: []});

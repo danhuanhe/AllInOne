@@ -1,8 +1,8 @@
 import React from 'react';
 import {TableWithHead} from "../../components";
 import {timestamp2fixedDate1} from "../../../utils";
-//import {CALL_HISTORY_ANSWER_TYPE,GET_CALL_HISTORY_SATISFACTION} from "../../constants";
-import {Tooltip} from 'antd';
+import {DAILY_TYPE_NAME_MAP} from "../constants";
+import {Tooltip,Icon} from 'antd';
 
 const DailyTable = props => {
 
@@ -18,7 +18,7 @@ const DailyTable = props => {
       dataIndex: 'type',
       key: 'type',
       render: val => {
-        return val == 1 ? '生活' : '工作';
+        return DAILY_TYPE_NAME_MAP[val];
       }
     },
     {
@@ -31,7 +31,7 @@ const DailyTable = props => {
       dataIndex: 'sumMoney',
       key: '',
       render: (value,record) => {
-        return record.callType == 1 ? record.callNum : record.mobile;
+        return record.sumMoney;
       }
     },
     {
@@ -39,7 +39,7 @@ const DailyTable = props => {
       dataIndex: 'content',
       key: '',
       render: (value,record) => {
-        return record.callType == 1 ? record.mobile : record.callNum;
+        return record.content;
       }
     },
     {
@@ -47,9 +47,19 @@ const DailyTable = props => {
       dataIndex: 'creator',
       key: '',
       render: (value,record) => {
-        return record.callType == 1 ? record.mobile : record.callNum;
+        return record.creator;
       }
     },
+    {
+      title:"操作",
+      key:"action",
+      render:(text, record) => (
+        <span className="actions">
+          <Icon type="edit" onClick={()=>props.editDaily(record)}/>
+          <Icon type="delete" onClick={()=>props.deleteDaily(record)}/>
+        </span>
+      )
+    }
   ];
 
   const columnFiltrate = {
@@ -58,10 +68,11 @@ const DailyTable = props => {
 
   columns.map(item => {item.width = '150px';});
 
-  const tableProps = {
+  const tableProps = {aaaaa:1,
     columns: columns,
     rowKey: '_id',
     dataSource: props.DailyList.list,
+    listRefreshFlag:props.DailyList.listRefreshFlag,
     pagination: {
       total: props.DailyList.totalNum,
       current: props.DailyList.current,
@@ -76,6 +87,9 @@ const DailyTable = props => {
       x: 670,
       y: 'calc(100vh - 320px)'
     },
+    rowSelection:{
+      onChange:props.handleRowChange
+    },
     onRow: (record) => {
       return {
         onClick: () => {
@@ -86,8 +100,8 @@ const DailyTable = props => {
     loading: props.DailyList.isLoading
   };
 
-  return (<TableWithHead totalNum={props.DailyList.totalNum}
-                         pageSize={props.pageSizes} tableProps={tableProps} />);
+  return (<TableWithHead idName={"_id"} totalNum={props.DailyList.totalNum}
+                         pageSize={props.pageSizes} tableProps={tableProps}/>);
 };
 
 export default DailyTable;

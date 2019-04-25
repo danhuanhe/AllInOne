@@ -40,6 +40,8 @@ export const setSaveResult = result => {
 };
 
 export const getDailyList = (params = {}) => {
+  params.offset=(params.current-1)*params.limit;
+  delete params.current;
   return dispatch => {
     dispatch(setListLoading(true));
     request({
@@ -56,6 +58,22 @@ export const getDailyList = (params = {}) => {
   };
 };
 
+export const getDailyById = (id,fn) => {
+  return dispatch => {
+    request({
+      url: '/api/daily/get',
+      method: 'GET',
+      params: {id}
+    }).then(json => {
+      if(fn){
+        fn(json);
+      }
+    }).catch(err => {
+      message.error(err.message || '网络错误，请刷新~');
+    });
+  };
+};
+
 export const saveDaily = (data = {},fn) => {
   return dispatch => {
     request({
@@ -64,6 +82,22 @@ export const saveDaily = (data = {},fn) => {
       data: data
     }).then(json => {
       dispatch(setSaveResult(json.result));
+      if(fn){
+        fn(json);
+      }
+    }).catch(err => {
+      message.error(err.message || '网络错误，请刷新~');
+    });
+  };
+};
+
+export const deleteDailys = (ids =[],fn) => {
+  return dispatch => {
+    request({
+      url: '/api/daily/delByIds',
+      method: 'POST',
+      data: ids
+    }).then(json => {
       if(fn){
         fn(json);
       }

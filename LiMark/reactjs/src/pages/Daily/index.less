@@ -8,12 +8,37 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    .btns{
+      button{
+        margin-left:10px;
+      }
+    }
+  }
+
+  .table-content{
+    table{
+      .actions{
+        .anticon{
+          margin-right:10px;
+        }
+      }
+    }
   }
 }
 
 .m-daily-modal{
   .items-show{
     border:solid 1px #ddd;
+    position: relative;
+    margin-top:10px;
+    .links{
+      position: absolute;
+      right:10px;
+      top:5px;
+      a{
+        margin-left:10px;
+      }
+    }
   }
   .item-show{
     display:flex;
@@ -30,5 +55,28 @@
         min-width: 200px;
       }
     }
+  }
+  .ant-form-item-btn{
+    .ant-form-item-label{
+      label{
+        visibility: hidden;
+      }
+      
+    }
+    .ant-btn{
+      margin-right:20px;
+    }
+  }
+  .icon-new-wraper{
+    text-align: right;
+  }
+  .icon-new{
+    padding:5px 0;
+    color:#69f;
+    cursor: pointer;
+    .anticon{
+      margin-right:5px;
+    }
+
   }
 }

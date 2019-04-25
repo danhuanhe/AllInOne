@@ -13,11 +13,12 @@ const DailyList = (state = {
     isLoading: true,
     totalNum: null,
     current: 1,
-    params: {}
+    params: {},
+    listRefreshFlag:0
   }, action) => {
   switch (action.type) {
     case SET_DATA_LIST:
-        return {...state, list: action.list};
+        return {...state, list: action.list,listRefreshFlag:(new Date()).getTime()};
     case SET_LIST_LOADING:
         return {...state, isLoading: action.isLoading};
     case SET_TOTAL_NUM:
@@ -33,7 +34,8 @@ const DailyList = (state = {
 };
 
 const Daily = (state = {
-    result: null
+    saveResult: null,
+    daily:null
 }, action) => {
   switch (action.type) {
     case SET_SAVE_RESULT:
