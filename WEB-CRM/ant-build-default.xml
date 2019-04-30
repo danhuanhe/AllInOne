@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cubex" default="dist" basedir=".">
+  <property name="mvn" value="mvn"/>
+  <property name="npm" value="npm"/>
+  <property name="dist.dir" value="dist"/>
+  <property name="compressed.dir" value="compressed"/>
+  <property name="compressed.conf.dir" value="${compressed.dir}/conf"/>
+  <property name="compressed.config.dir" value="${compressed.conf.dir}/config"/>
+  <property name="compressed.static.dir" value="${compressed.conf.dir}/static"/>
+  <property name="compressed.static.public.dir" value="${compressed.static.dir}/public"/>
+  <property name="compressed.templates.dir" value="${compressed.conf.dir}/templates"/>
+  <property name="compressed.lib.dir" value="${compressed.dir}/lib"/>
+  <property name="target.dir" value="target"/>
+
+  <target name="cleanJava">
+    <echo message="Clean java files"/>
+    <delete dir="${target.dir}"/>
+    <delete dir="${compressed.dir}"/>
+  </target>
+
+  <target name="cleanWeb">
+    <echo message="Clean web files"/>
+    <delete dir="${dist.dir}"/>
+  </target>
+
+  <target name="packJava" depends="cleanJava">
+    <echo message="Start to package java"/>
+    <exec dir="../.." executable="${mvn}" failonerror="true">
+      <arg line="-T 1.5C clean package -Dmaven.test.skip=true -Pdev -pl web/prophet -am"/>
+    </exec>
+  </target>
+
+  <target name="npm-install">
+    <echo message="Install node modules"/>
+    <exec dir="." executable="${npm}" failonerror="true">
+      <arg line="install"/>
+    </exec>
+  </target>
+
+  <target name="packWeb" depends="cleanWeb,npm-install">
+    <echo message="Start to package web"/>
+    <exec dir="." executable="${npm}" failonerror="true">
+      <arg line="run build"/>
+    </exec>
+  </target>
+
+  <target name="dist" depends="packJava,packWeb">
+    <move todir="${compressed.config.dir}" overwrite="true">
+      <fileset dir="${target.dir}/classes/config">
+        <include name="**/*"/>
+      </fileset>
+    </move>
+    <move todir="${compressed.conf.dir}/sentry-javaagent-home" overwrite="true">
+      <fileset dir="${target.dir}/classes/sentry-javaagent-home">
+        <include name="**"/>
+      </fileset>
+    </move>
+    <move todir="${compressed.lib.dir}" overwrite="true">
+      <fileset dir="${target.dir}">
+        <include name="*.jar"/>
+      </fileset>
+    </move>
+    <move todir="${compressed.lib.dir}" overwrite="true">
+      <fileset dir="${target.dir}/dependencies">
+        <include name="**/*.jar"/>
+      </fileset>
+    </move>
+    <move todir="${compressed.static.public.dir}" overwrite="true">
+      <fileset dir="${dist.dir}/static">
+        <include name="**/*"/>
+      </fileset>
+    </move>
+    <move todir="${compressed.static.dir}" overwrite="true">
+      <fileset dir="${target.dir}/classes">
+        <include name="robots.txt"/>
+      </fileset>
+    </move>
+    <move todir="${compressed.templates.dir}" overwrite="true">
+      <fileset dir="${dist.dir}/templates">
+        <include name="**/*"/>
+      </fileset>
+    </move>
+  </target>
+
+</project>

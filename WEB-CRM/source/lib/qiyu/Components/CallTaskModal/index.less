@@ -1,0 +1,150 @@
+@import (reference) '../../assets/css/common/mixin';
+/* stylelint-disable */
+.box() {
+  border: 1px solid #ddd;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  .fishd-col-6 {
+    white-space: pre;
+  }
+}
+
+.m-CallTaskModal-Create {
+  &-content {
+    position: relative;
+    max-height: calc(100vh - 190px - 100px);
+    border: 1px solid #e1e3e6;
+    border-radius: 2px;
+    overflow-y: scroll;
+    padding: 20px 24px 20px 30px;
+    margin-top: 20px;
+  }
+  &-modal {
+    .fishd-modal-body {
+      max-height: calc(100vh - 190px) !important;
+    }
+    .fishd-modal {
+      top: 40px;
+    }
+  }
+}
+
+
+.m-CallTaskModal-Step1 {
+  &-close-circle {
+    cursor: pointer;
+    color: rgb(204, 204, 204);
+  }
+  &-info {
+    margin-left: 5px;
+  }
+  &-ellipsis {
+    .ellipsis();
+  }
+  &-box {
+    .box();
+    padding-left: 6px;
+    padding-right: 18px;
+  }
+  &-dateMiddle {
+    display: inline-block;
+    width: 39px;
+    text-align: center;
+  }
+  .fishd-form-item {
+    margin-bottom: 17px !important;
+  }
+}
+
+.m-CallTaskModal-Step2 {
+  &-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+  &-content1 {
+    margin-top: 20px;
+    text-align: center;
+  }
+  &-content2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #666;
+    word-wrap: break-word;
+    text-indent: 100px;
+  }
+}
+
+.m-CallTaskModal-RandomBox {
+  .box();
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 6px;
+  padding-right: 18px;
+  min-height: 150px;
+}
+
+@border-color: #e1e3e6;
+.m-CallTaskModal-Specified {
+  .box();
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 6px;
+  padding-right: 18px;
+  &-head {
+    font-size: 14px;
+    border: 1px solid @border-color;
+    border-bottom: none;
+    padding: 0 8px;
+    margin-top: 10px;
+    > div {
+      display: inline-block;
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+      > span {
+        color: #337eff;
+        padding: 5px;
+      }
+    }
+  }
+  &-errorInput {
+    .fishd-input-number {
+      border-color: #f24957;
+    }
+    .fishd-input-number-focused {
+      border-color: #f56d79;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(242, 73, 87, 0.2);
+      border-right-width: 1px !important;
+    }
+  }
+  .fishd-form-explain {
+    margin-top: 4px;
+    transition: all 0.4s;
+  }
+  &-txt {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  &-txtErr {
+    opacity: 1;
+    color: #f24957 !important;
+  }
+  &-disabledDelete {
+    cursor: no-drop;
+    color: #a9d6ff !important;
+    &:hover {
+      color: #a9d6ff !important;
+    }
+    &:active {
+      color: #a9d6ff !important;
+    }
+  }
+
+  .fishd-table {
+    border: 1px solid @border-color;
+    border-bottom: none;
+  }
+}

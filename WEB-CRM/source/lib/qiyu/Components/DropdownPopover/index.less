@@ -1,0 +1,39 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-DropdownPopover {
+  &-content {
+    padding: 5px 0 0 10px;
+    margin: 0 -6px -2px -6px;
+  }
+
+  &-reset {
+    text-align: right;
+    margin-right: 10px;
+
+    &-txt {
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+      color: @blue;
+
+      &:hover {
+        color: @blue-hover;
+      }
+
+      &:active {
+        color: @blue-active;
+      }
+    }
+  }
+
+  &-selectors {
+    margin-top: 10px;
+    overflow: hidden;
+
+    > * {
+      float: left;
+      margin-bottom: 10px !important;
+      margin-right: 10px !important;
+    }
+  }
+}

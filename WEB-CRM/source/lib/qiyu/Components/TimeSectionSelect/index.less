@@ -1,0 +1,44 @@
+.m-timeSection-select-dropdown {
+    .input-area {
+        white-space: nowrap;
+    }
+    .input-wrap {
+        position: relative;
+        display: inline-block;
+        margin: 0 5px;
+        &:first-child {
+            margin-left: 0;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+        input {
+            display: inline-block;
+            padding: 0 25px 0 10px;
+            width: 40px;
+            height: 34px;
+            box-sizing: content-box;
+        }
+    }
+    .unit {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .separator {
+        position: relative;
+        top: -4px;
+        display: inline-block;
+        width: 22px;
+        height: 1px;
+        margin: 0 5px;
+        background-color: #ccc;
+    }
+    .u-status-error {
+        margin-top: 5px;
+        p {
+            color: #f96868;
+        }
+    }
+}

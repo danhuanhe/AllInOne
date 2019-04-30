@@ -1,0 +1,68 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-echart-legend {
+  text-align: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  outline: none;
+
+  &-txt {
+    display: inline-block;
+    zoom: 1;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    > span {
+      display: inline-block;
+    }
+    > span:first-child {
+      width: 6%;
+    }
+  }
+  &-txt-left {
+    text-align: left;
+    width: 45%;
+    .ellipsis();
+  }
+
+  &-txt-right {
+    width: 49%;
+    .ellipsis();
+  }
+
+  > li {
+    text-align: left;
+    position: relative;
+    list-style: none;
+
+    .m-echart-legend-circle {
+      .color-dot();
+    }
+
+    * {
+      vertical-align: middle;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+
+  &-btn-more {
+    color: #62a8ea;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    &:hover {
+      color: #89bceb;
+    }
+  }
+
+  &-table {
+    th,
+    td {
+      /* stylelint-disable */
+      padding: 5px !important;
+      /* stylelint-enable */
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-headCondition {
+  background-color: @bodyBgColor;
+
+  > div:last-child {
+    > *:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+
+  &-head {
+    .iconfont.icon-circle-info {
+      margin-left: 5px;
+    }
+  }
+
+  &-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .icon-export {
+      padding-right: 6px;
+    }
+  }
+}

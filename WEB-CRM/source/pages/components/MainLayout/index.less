@@ -1,0 +1,80 @@
+@import (reference) '../../../assets/css/common/index';
+
+@main-layout-prefix: main-layout;
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.@{main-layout-prefix} {
+  position: relative;
+  height: 100vh;
+  min-width: 1366px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+
+  .layout-header {
+    background: #fff;
+    padding: 0;
+    border: 1px solid @border-color-base;
+  }
+
+  .fishd-menu-item {
+    .iconfont {
+      padding-right: 15px;
+    }
+  }
+
+  .fishd-menu-inline-collapsed {
+    .fishd-menu-item .iconfont + span {
+      display: none;
+    }
+  }
+
+  .logo-ctner {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    height: 60px;
+    background: @blue;
+
+    .logo-mini {
+      position: relative;
+      display: inline-block;
+      margin-right: 22px;
+      width: 88px;
+      height: 25px;
+      background: url(../../../assets/image/logo-mini.png) no-repeat;
+      background-position: left center;
+      background-size: contain;
+    }
+
+    .logo-mini-s {
+      position: relative;
+      display: inline-block;
+      margin-left: 6px;
+      width: 28px;
+      height: 22px;
+      background: url(../../../assets/image/logo-mini-s.png) no-repeat;
+      background-position: left center;
+      background-size: contain;
+    }
+  }
+
+  .fishd-layout-content {
+    text-align: center;
+    line-height: 280px;
+    min-height: 280px;
+    overflow: scroll;
+  }
+}
+
+.fishd-menu-inline-collapsed-tooltip {
+  pointer-events: none;
+  .iconfont {
+    display: none;
+  }
+}

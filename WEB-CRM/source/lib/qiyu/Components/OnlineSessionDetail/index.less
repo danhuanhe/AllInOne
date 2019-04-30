@@ -1,0 +1,108 @@
+@import (reference) "../../assets/css/common/mixin.less";
+
+.m-session-detail {
+    font-size: 12px;
+    line-height: 1;
+    li {
+        list-style: none;
+    }
+    .m-customfields-form  {
+        margin-top: 20px;
+        .fishd-form-item-label {
+            .ellipsis();
+        }
+    }
+    &-info {
+        display: flex;
+        flex-direction: row;
+    }
+    &-category {
+        display: flex;
+        align-items: center;
+        width: 40%;
+        .no-select {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    }
+    &-status {
+        width: 40%;
+        text-align: right;
+    }
+    .u-terminal {
+        flex: 1;
+        text-align: center;
+    }
+    &-remark {
+        margin-top: 20px;
+    }
+    &-satisfy {
+        margin-top: 20px;
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        .satisfy-choice {
+            display: flex;
+            align-items: center;
+        }
+        .icon-satisfy {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-size: 20px auto;
+        }
+        .icon-satisfy-2-1, .icon-satisfy-3-1, .icon-satisfy-5-1 {
+            background-image: url('../../assets/image/satisfy/s0.png');
+        }
+        .icon-satisfy-3-50, .icon-satisfy-5-50 {
+            background-image: url('../../assets/image/satisfy/s2.png');
+        }
+        .icon-satisfy-1-100, .icon-satisfy-3-100, .icon-satisfy-5-100 {
+            background-image: url('../../assets/image/satisfy/s4.png');
+        }
+        .icon-satisfy-5-25 {
+            background-image: url('../../assets/image/satisfy/s1.png');
+        }
+        .icon-satisfy-5-75 {
+            background-image: url('../../assets/image/satisfy/s3.png');
+        }
+        .satisfy-tag {
+            margin-top: 10px;
+        }
+        .tag-item {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 7px;
+            padding: 4px 12px;
+            border: 1px solid #ccc;
+            border-radius: 102px;
+            font-size: 12px;
+        }
+        .satisfy-remark {
+            margin-top: 10px;
+            color: #a0a0a0;
+        }
+    }
+    &-alarm {
+        margin-top: 20px;
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        .item {
+            display: inline-block;
+            margin: 10px 5px 0 0;
+            font-size: 12px;
+            line-height: 14px;
+            padding: 2px 4px;
+            background: #f1f1f1;
+            border: 1px solid #e6e7ec;
+            border-radius: 2px;
+        }
+    }
+    &-msglist {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,94 @@
+{
+  "name": "ysf-web-common",
+  "version": "0.0.1",
+  "description": "common business components of ysf",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.config.js --watch",
+    "installCheck": "node tools/installCheck",
+    "checkVersion": "node tools/checkVersion"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "enzyme": "^3.7.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.10.3",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "lint-staged": "^7.3.0",
+    "raw-loader": "^0.5.1",
+    "react-markdown-reader": "^1.1.0",
+    "style-loader": "^0.23.1",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.2.0",
+    "webpack": "~4.28.4",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ppfish": "^1.6.4",
+    "react": "^16.6.0",
+    "react-code-view": "^1.1.13",
+    "react-dom": "^16.6.0",
+    "react-loadable": "^5.5.0",
+    "react-md-translator": "0.0.15",
+    "react-redux": "^5.1.0",
+    "react-router": "^3.2.1",
+    "redux": "^4.0.1",
+    "ua-parser-js": "^0.7.19",
+    "react-infinite-scroller": "^1.2.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "cubex/**/*.js": [
+        "eslint --fix",
+        "git add"
+      ],
+      "qiyu/**/*.js": [
+        "eslint --fix",
+        "git add"
+      ],
+      "site/**/*.js": [
+        "eslint --fix",
+        "git add"
+      ],
+      "cubex/**/*.less": [
+        "stylelint --fix",
+        "git add"
+      ],
+      "qiyu/**/*.less": [
+        "stylelint --fix",
+        "git add"
+      ],
+      "site/**/*.less": [
+        "stylelint --fix",
+        "git add"
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@import '../mixin.less';
+/* stylelint-disable */
+.m-msgList .msg-workflow {
+  .bot-form{
+    border:1px solid #ebebeb;
+    border-radius: 4px;
+    .bot-form__item{
+      padding: 15px 20px;
+      border-top: 1px solid #d8d8d8;
+      font-size: 14px;
+      color: #222;
+      &:first-child{
+        border-top: 0;
+      }
+    }
+    .bot-form__item-ttl{
+      padding: 0;
+    }
+    .bot-form__item-val{
+      padding: 0;
+      padding-top: 10px;
+      img{
+        all:initial;
+        min-width: 50%;
+        max-width: 100%;
+        width:auto;
+        height:auto;
+        border-radius: 4px;
+      }
+    }
+    .bot-form__file{
+      .clearfix;
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
+      padding: 10px;
+      width:auto;
+      height:auto;
+      min-width:140px;
+      max-width: 100%;
+      max-height: 100px;
+      border:1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      &:hover{
+        border-color: #5294e0;
+      }
+      .bot-form__file-aside{
+        position: absolute;
+        left: 10px;
+        top:10px;
+      }
+      .bot-form__file-main{
+        padding-left: 35px;
+        margin-top: -1px;
+        .ttl{
+          padding: 0;
+          font-size: 12px;
+          line-height: 1.4;
+          color: #222;
+          white-space: normal;
+          word-break: break-all;
+        }
+        .size{
+          padding: 0;
+          font-size: 12px;
+          line-height: 1.4;
+          color: #999;
+          white-space: normal;
+          word-break: break-all;
+        }
+      }
+      .u-icon-font{
+        &.icon-picture{
+          font-size: 26px;
+          line-height: 1;
+          color:#999;
+        }
+      }
+      .image_hidden{
+        position: absolute;
+        display:block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        cursor:pointer;
+      }
+    }
+  }
+  .bot-bot_form {
+    p {
+      padding: 15px 20px;
+      word-break: break-all;
+    }
+  }
+}

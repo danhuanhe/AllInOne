@@ -1,0 +1,135 @@
+@import '../mixin.less';
+@import './order.less';
+@import './card.less';
+@import './form.less';
+/* stylelint-disable */
+.m-msgList .msg-workflow {
+    .msg-nosys;
+    .msg-bubble {
+        max-width: 358px;
+        padding: 0;
+    }
+    .tlt {
+        line-height: 1.5;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+    .ft {
+        padding: 10px 0;
+        text-align: center;
+        background-color : #ebebeb;
+        border-top: 1px solid #ddd;
+        &.z-dis {
+          color: #ddd;
+        }
+	}
+	.bot-unidentified {
+		padding: 15px 20px;
+	}
+	.bot-static_union {
+		.bot-typeset{
+      width: 295px;
+			border:1px solid #ebebeb;
+			border-radius: 4px;
+			.bot-typeset__item{
+				padding: 15px 20px;
+				border-top: 1px solid #d8d8d8;
+				font-size: 14px;
+				color: #222;
+				&:first-child{
+					border-top: 0;
+				}
+			}
+			.bot-typeset__link + .bot-typeset__link{
+				padding-top: 0;
+				border-top: 0;
+			}
+			.bot-typeset__item-text{
+				padding: 0;
+				white-space: normal;
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+			.bot-typeset__item-image{
+				padding: 0;
+				cursor: pointer;
+				img{
+					min-width: 50%;
+					max-width: 100%;
+					width:auto;
+					height:auto;
+					border-radius: 4px;
+				}
+			}
+			.bot-typeset__item-link{
+				display: block;
+				padding: 8px 15px;
+				border: 1px solid #5092e1;
+				border-radius: 4px;
+				font-size: 14px;
+				color: #5092e1;
+				line-height: 1.4;
+				text-align: center;
+				.ellipsis;
+			}
+			.bot-typeset_item-rich{
+				.rich-content;
+				img{
+					max-width: 100%;
+				}
+			}
+		}
+	}
+	.bot-wx_news{
+      width: 342px;
+      padding: 11px 0 7px 0;
+      background: #fff;
+      border:1px solid #dadada;
+      .item{
+        min-height: 70px;
+        padding: 10px 21px 10px 21px;
+        border-top: 1px solid #e0e0e0;
+        box-sizing: border-box;
+        img{
+          float: right;
+          width: 50px;
+          height: 50px;
+          margin-left: 30px;
+        }
+        h4{
+          min-height: 20px;
+          margin-bottom:12px;
+          font-size: 14px;
+          color: #222;
+          line-height: 20px;
+          white-space: normal;
+          word-wrap: break-word;
+        }
+        &:first-child{
+          min-height: initial;
+          border-top: none;
+          img{
+            float: none;
+            width: 300px;
+            height: 167px;
+            margin: 0 0 17px 0;
+          }
+        };
+      }
+      .des-list{
+        min-height: 20px;
+        margin-bottom: 8px;
+      }
+      .des-item{
+        font-size: 14px;
+        color: #666;
+        line-height: 20px;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+      .redirect{
+        font-size: 14px;
+        color: #5092e1;
+      }
+    }
+}

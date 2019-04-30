@@ -1,0 +1,55 @@
+@import './mixin.less';
+/* stylelint-disable */
+.m-msgList {
+    @keyframes audioplaying {
+        0%{
+            background: url(../../assets/image/voice/1.png);
+        }
+        30%{
+            background: url(../../assets/image/voice/1.png);
+        }
+        60%{
+            background: url(../../assets/image/voice/2.png);
+        }
+        100%{
+            background: url(../../assets/image/voice/3.png);
+        }
+    };
+    .msg-audio {
+        .msg-nosys;
+        .msg-bubble {
+            padding: 0;
+            border-radius: 23px;
+        }
+        .audio-wrap {
+            &.z-playing {
+                .icon-voice {
+                    animation: audioplaying 1s infinite;
+                }
+            }
+            .icon-voice{
+                display: inline-block;
+                width: 16px;
+                height: 20px;
+                background: url(../../assets/image/voice/3.png);
+                transform: rotate(-180deg);
+            }
+            .audio-top{
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                height: 46px;
+                padding: 14px 23px;
+                border-bottom: 2px #b6deff solid;
+                align-items: center;
+                .length{
+                    flex: 1;
+                }
+            }
+            .audio-bottom{
+                padding: 12px 15px 19px 23px;
+                word-break: break-all;
+            }
+        }
+    }
+}

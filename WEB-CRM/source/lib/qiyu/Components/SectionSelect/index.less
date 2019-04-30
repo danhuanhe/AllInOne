@@ -1,0 +1,42 @@
+.m-section-select {
+    position: relative;
+    display: inline-block;
+    .sel-control {
+        width: 100%;
+    }
+    .fishdicon-down-fill {
+        font-size: 12px;
+    }
+    .fishdicon-down-fill.z-open {
+        &:before {
+            transform: rotate(180deg);
+        }
+    }
+}
+.m-section-select-dropdown {
+    display: none;
+    min-width: 200px;
+    margin-top: 10px;
+    z-index: 1000;
+    box-shadow: none;// 覆盖.fishd-select-dropdown阴影，因fishd-popover-inner已做处理。
+    &.z-open {
+        display: inline-block;
+    }
+    .dropdown-content {
+        position: relative;
+        padding: 11px 15px;
+    }
+    .sel-dropdown-title {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+}
+
+.m-section-select-popover {
+    .fishd-popover-arrow {
+        display: none;
+    }
+    .fishd-popover-inner-content {
+        padding: 0;
+    }
+}

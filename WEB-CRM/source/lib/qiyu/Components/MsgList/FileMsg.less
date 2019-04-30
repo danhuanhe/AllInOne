@@ -1,0 +1,131 @@
+@import './mixin.less';
+/* stylelint-disable */
+.m-msgList .msg-file {
+	.msg-nosys;
+	.msg-bubble {
+		padding: 10px;
+		border: 1px solid #e5e5e5;
+	}
+	&.msg-left {
+		.msg-bubble {
+			background: #fff;
+			&:after {
+				left: -4px;
+				border-right: 6px solid #fff;
+			}
+		}
+	}
+	&.msg-right {
+		.msg-bubble {
+			background: #fff;
+			&:after {
+				right: -4px;
+				border-left: 6px solid #fff;
+			}
+		}
+	}
+	.file-wrap {
+		&.z-expired {
+			color: #999;
+		}
+	}
+	.file-bd {
+		overflow: hidden;
+	}
+	.file-left{
+		float: left;
+		margin-right: 9px;
+		img {
+			width: 45px;
+			height: 52px;
+		}
+	}
+	.file-right{
+		float: left;
+		font-size: 13px;
+		.hd{
+			height: 32px;
+		}
+		.bd{
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			margin-top: 2px;
+			line-height: 14px;
+		}
+	}
+	.name{
+		display: -webkit-box;
+		width: 182px;
+		overflow: hidden;
+		padding: 0;
+		line-height: 16px;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		word-wrap: break-word;
+		word-break: break-all;
+		}
+	.size{
+		display: inline-block;
+		color: #999;
+		vertical-align: middle;
+		line-height: 17px;
+	}
+	.download {
+		position: absolute;
+		right: 0;
+		bottom: 1px;
+		height: auto;
+	}
+
+	/* icon */
+	.u-icon-imgflag, .u-icon-txt, .u-icon-doc, .u-icon-excel, .u-icon-unknown, .u-icon-zip, .u-icon-ppt, .u-icon-video, .u-icon-key, .u-icon-audio, .u-icon-pdf{
+      display: inline-block;
+      width: 45px;
+      height: 52px;
+      background:url("../../assets/image/file/icon-file@2x.png");
+      background-repeat:no-repeat;
+      background-size: auto;
+      cursor: default;
+    }
+    .u-icon-imgflag{
+      background-position: 0 0;
+    }
+    .u-icon-txt{
+      background-position: 0 -80px;
+    }
+    .u-icon-doc{
+      background-position: 0 -160px;
+    }
+    .u-icon-excel{
+      background-position: 0 -240px;
+    }
+    .u-icon-unknown{
+      background-position: 0 -320px;
+    }
+    .u-icon-zip{
+      background-position: 0 -400px;
+    }
+    .u-icon-ppt{
+      background-position: 0 -480px;
+    }
+    .u-icon-video{
+      background-position: 0 -560px;
+    }
+    .u-icon-key{
+      background-position: 0 -640px;
+    }
+    .u-icon-audio{
+      background-position: 0 -720px;
+    }
+    .u-icon-pdf{
+      background-position: 0 -800px;
+	}
+	
+	.z-expired {
+		.u-icon-imgflag, .u-icon-txt, .u-icon-doc, .u-icon-excel, .u-icon-unknown, .u-icon-zip, .u-icon-ppt, .u-icon-video, .u-icon-key, .u-icon-audio, .u-icon-pdf {
+        background-position-x: -96px;
+      }
+	}
+}

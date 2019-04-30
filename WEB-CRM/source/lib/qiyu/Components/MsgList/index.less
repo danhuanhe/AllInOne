@@ -1,0 +1,139 @@
+@import (reference) '../../assets/css/common/mixin.less';
+@import './mixin.less';
+@import './AudioMsg.less';
+@import './FileMsg.less';
+@import './QaMsg.less';
+@import './CardMsg.less';
+@import './MiniProgramCardMsg.less';
+@import './BotMsg/index.less';
+
+/* stylelint-disable */
+/* 历史代码不好调整 */
+.m-msgList {
+	p, ul, li {
+		margin: 0;
+		padding: 0;
+	}
+	ul, li {
+		list-style: none;
+	}
+	i {
+		font-size: 14px;
+	}
+
+    .msg {
+		margin: 20px 0;
+	}
+
+	.msg-sys {
+		.msg-sys;
+	}
+    .msg-cnotify {
+		.msg-sys;
+	}
+	.msg-ainvalid {
+		.msg-sys;
+	}
+	.msg-tip {
+		.msg-sys;
+	}
+	.msg-receiptinfo {
+		.msg-sys;
+	}
+	.msg-transkefu {
+		.msg-sys;
+	}
+	.msg-unidentified {
+		.msg-nosys;
+		.msg-bubble {
+			position: relative;
+			max-width: 330px;
+			line-height: 1.5;
+		}
+	}
+	.msg-text {
+		.msg-nosys;
+		.msg-bubble {
+			position: relative;
+			max-width: 330px;
+			// 这个功能先隐藏
+			/* &:hover {
+				.search-knowledge {
+					display: flex;
+					&:hover {
+						.icon-magnifier {
+							color: #5092e1;
+						}
+					}
+				}
+			} */
+		}
+		p {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
+		.search-knowledge {
+			display: none;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			top: -12px;
+			right: -8px;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			background: #fff;
+			cursor: pointer;
+			.icon-magnifier {
+				font-size: 18px;
+        		color: #c8c9ca;
+			}
+		}
+	}
+    .msg-image {
+		.msg-nosys;
+		.msg-bubble {
+			&:before, &::after {
+				display: none;
+			}
+			padding: 0;
+			img {
+				display: block;
+				max-width: 120px;
+				max-height:120px;
+				border-radius:2px;
+				cursor: pointer;
+			}
+		}
+	}
+	.msg-video {
+		.msg-nosys;
+		.msg-bubble {
+			padding: 0;
+			&:before {
+				display: none;
+			}
+		}
+		.fishdicon-play {
+			font-size: 24px;
+		}
+		.fishd-video-error {
+			display: none;
+		}
+	}
+	.msg-richtext, .msg-rg {
+		.msg-nosys;
+		.msg-bubble {
+			.rich-content;
+		}
+	}
+	.msg-productinfo {
+		.msg-nosys;
+	}
+}
+
+.fishd-video-modal-modal-wrap {
+	.icon-close::before {
+		content: "\E6D9";
+	}
+}

@@ -1,0 +1,45 @@
+@import '../mixin.less';
+/* stylelint-disable */
+.m-msgList .msg-workflow {
+    /* bot卡片布局 */
+    .m-card-layout{
+      .group-list{
+        padding: 8px 18px 10px 18px;
+      }
+      .group-item{
+        border-bottom: 1px solid #ddd;
+        &:last-child{
+          border-bottom: none;
+        };
+      }
+      .tr-item{
+        padding: 5px;
+      }
+      .td-list{
+        font-size: 0;
+      }
+      .td-item{
+        display: inline-block;
+        vertical-align: middle;
+        padding: 3px 0;
+        box-sizing: border-box;
+        .inner{
+          display: inline-block;
+          padding: 0 5px;
+          font-size: 14px;
+          white-space: normal;
+          word-wrap: break-word;
+          word-break: break-all;
+          box-sizing: border-box;
+          vertical-align: middle;
+          .ellipsis-multiple-line-3;
+        }
+        img{
+          max-width: 100%;
+        }
+      }
+    }
+    .bot-card_layout, .bot-detail_view{
+        width: 358px;
+    }
+}

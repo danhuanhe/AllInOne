@@ -1,0 +1,4 @@
+[submodule "source/lib"]
+	path = source/lib
+	url = https://g.hz.netease.com/ysf/web-project/web-common.git
+	branch = online

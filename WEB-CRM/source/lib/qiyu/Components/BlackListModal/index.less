@@ -1,0 +1,30 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-blacklist-modal {
+  .ellipsis-reason {
+    label {
+      .ellipsis;
+      max-width: 100%;
+      display: inline-block;
+    }
+  }
+}
+
+.m-blacklist-timeselect {
+  .timeselect-group {
+    width: 50%;
+    margin-top: 10px;
+    .clearfix;
+    .timeselect-item {
+      float: left;
+      width: 80px;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+  .timeselect-tip {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,50 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-echart-DoughnutChart {
+  &-title {
+    position: relative;
+    text-align: center;
+    font-size: 16px;
+    line-height: 33px;
+    color: #222;
+  }
+  &-chart {
+    position: relative;
+  }
+  &-middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 500;
+  }
+  &-content {
+    width: 150px;
+    font-size: 14px;
+    &-left {
+      display: inline-block;
+      width: 46%;
+      text-align: right;
+      vertical-align: middle;
+      height: 25px;
+    }
+    &-middle {
+      display: inline-block;
+      width: 8%;
+      text-align: center;
+      vertical-align: middle;
+      height: 25px;
+    }
+    &-right {
+      display: inline-block;
+      vertical-align: middle;
+      width: 46%;
+      height: 25px;
+    }
+  }
+  &-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,151 @@
+// TODO 改了qiyu/assets/css发现本地开发环境不生效
+// site/assets/css 不要拷贝一份qiyu/assets/css，同时维护两套。。。
+@import './assets/css/common/index.less';
+
+/* reset */
+/* stylelint-disable */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;outline:none;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+del,ins,u,s,a,a:hover,a:active,a:focus{text-decoration:none;outline:none;}
+body,textarea,input,button,select,keygen,legend{outline:0;}
+body{cursor:default;}
+input::-ms-clear,input::-ms-reveal{display:none;}
+button{border:0}
+
+#app {
+  height: 100%;
+}
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.g-header {
+  z-index: 1;
+  height: 64px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 2px 9px 0 rgba(37, 38, 94, 0.1);
+  color: #fff;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: relative;
+  .header-title {
+    text-align: left;
+    img {
+      height: 36px;
+      margin: 13px 0 13px 24px;
+    }
+  }
+  h1 {
+    position: relative;
+    margin: 0;
+    float: left;
+    padding-left: 40px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #45474d;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #383838;
+      letter-spacing: 0;
+      text-align: center;
+      display: block;
+    }
+    img {
+      vertical-align: sub;
+      pointer-events: none;
+    }
+  }
+
+  .nav {
+    float: right;
+    line-height: 64px;
+    height: 64px;
+    background: transparent;
+    padding: 0;
+    margin: 0 40px 0 0;
+  }
+
+  //层级关系需要保留，作样式覆盖
+  .nav-item {
+    font-size: 16px;
+    margin: 0 0 0 20px;
+    float: left;
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    &:last-child {
+      cursor: default;
+      margin-left: 34px;
+    }
+    .nav-lang {
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      &.active {
+        font-weight: 700;
+        opacity: 1;
+        font-size: 16px;
+        color: #4d70ff;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #383838;
+      display: block;
+      padding: 0 20px;
+      transition: all ease 0.3s;
+      &.active,
+      &:hover {
+        color: #4d70ff;
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background: #4d70ff;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+      }
+    }
+  }
+  .nav-version {
+    background: #337eff;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 46px;
+    margin-left: 60px;
+    padding: 4px 13px;
+  }
+}
+
+.g-main {
+  flex: 1;
+  overflow: hidden;
+}
+
+.m-page {
+  height: 100%;
+}

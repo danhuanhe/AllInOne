@@ -1,0 +1,65 @@
+@import "../../assets/css/common/mixin.less";
+
+@modulePrefix: m-echart;
+
+.@{modulePrefix} {
+  &-bordered {
+    border: 1px solid #e1e3e6;
+    border-radius: 4px;
+    padding: 2.5% 3%;
+    > .@{modulePrefix}-title {
+      text-align: center;
+    }
+  }
+  &-body {
+    position: relative;
+    > span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > :nth-child(1) {
+        flex: 1;
+      }
+      > :nth-child(2) {
+        flex: 0.9;
+      }
+    }
+
+    &.border {
+      border: 1px solid #ccc;
+    }
+  }
+
+  &-chart {
+    position: relative;
+    min-width: 160px;
+  }
+
+  &-title {
+    > div:first-child {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+  &-titleTxt {
+    color: #666;
+    font-size: 18px;
+    margin-right: 4px;
+  }
+
+  &-pieTitle {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    .ellipsis();
+    max-width: 100%;
+    font-size: 15px;
+  }
+
+  .u-chart-name {
+    position: relative;
+    top: -15px;
+  }
+}

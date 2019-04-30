@@ -1,0 +1,30 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-headCondition-head {
+  display: flex;
+  align-items: center;
+  &__title {
+    font-size: 21px;
+    line-height: 21px;
+    color: @black-2;
+  }
+  &__title__txt {
+    vertical-align: middle; // 这样才能跟icon对其
+  }
+  .iconfont.icon-prompt-informationx {
+    margin-left: 5px;
+    vertical-align: middle;  //整体剧照对齐
+    display: inline-block;   //内部变为容器
+    line-height: 1;
+  }
+  &__right {
+    align-self: flex-end;
+    flex-grow: 1;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+    > *:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}

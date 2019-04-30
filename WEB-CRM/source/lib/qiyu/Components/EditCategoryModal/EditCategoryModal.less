@@ -1,0 +1,170 @@
+@import (reference) '../../assets/css/common/mixin';
+
+.m-EditCategory {
+  .display-box();
+  border: 1px solid #e6e6e6;
+  border-radius: 4px 5px 5px 5px;
+  border-right: none;
+  min-height: 540px;
+
+  i {
+    cursor: pointer;
+  }
+  i.icon-correct1:hover {
+    color: #60c450;
+  }
+  i.icon-cancel:hover {
+    color: #eb505b;
+  }
+  i.disabled {
+    color: #ccd5d8;
+    cursor: not-allowed;
+  }
+  i.disabled:hover {
+    color: #ccd5d8;
+    cursor: not-allowed;
+  }
+
+  &-level {
+    .box-flex();
+    border-right: 1px solid #e6e6e6;
+    max-width: 175px;
+    width: 175px;
+    box-sizing: border-box;
+  }
+
+  &-name {
+    font-size: 14px;
+    color: #333;
+    background: #fafafb;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 12px;
+  }
+
+  &-items {
+    height: 440px;
+    overflow-y: auto;
+  }
+
+  &-item {
+    .display-box();
+    .flex-wrap();
+    .box-align();
+    color: #333;
+    padding: 10px 12px;
+    font-size: 12px;
+    cursor: default;
+    height: 38px;
+    position: relative;
+    .m-EditCategory-item-popover {
+      /* stylelint-disable */
+      top: 32px !important;
+      /* stylelint-enable */
+    }
+    .fishd-tooltip-inner {
+      color: #333;
+      background-color: #fff;
+      box-shadow: 0 0 10px #ddd;
+      padding: 8px 10px;
+      font-size: 12px;
+      border-radius: 5px;
+    }
+    .m-EditCategory-item-popover .fishd-tooltip-inner {
+      color: #f96868;
+    }
+    .fishd-tooltip-arrow {
+      border-bottom-color: #fff;
+    }
+    > span {
+      .ellipsis();
+      flex: 1;
+    }
+    input {
+      height: 28px;
+      width: 100px;
+    }
+    i {
+      color: #bfbfbf;
+      margin-left: 10px;
+    }
+    &:hover:not(.input) {
+      > div {
+        display: inline;
+      }
+    }
+    &.selected {
+      background: #eeeef1;
+    }
+    &.disabled {
+      pointer-events: none;
+    }
+  }
+
+  &-add {
+    .display-box();
+    .box-align();
+    color: #62a8ea;
+    padding: 12px;
+    font-size: 12px;
+    i {
+      padding-right: 5px;
+    }
+    span {
+      cursor: pointer;
+    }
+    &.disabled {
+      pointer-events: none;
+      color: #ccd5d8;
+      cursor: default;
+    }
+  }
+
+  &-addLevel {
+    color: #62a8ea;
+    padding: 12px;
+    font-size: 12px;
+    .display-box();
+    .box-align();
+    height: 46px;
+    cursor: pointer;
+    white-space: nowrap;
+    i {
+      padding-right: 5px;
+    }
+  }
+
+  &-actions {
+    display: none;
+    i {
+      font-size: 12px;
+      color: #999;
+      margin-left: 6px;
+    }
+    i:hover {
+      color: #5092e1;
+    }
+  }
+
+  &-item.input {
+    .box-align();
+    height: 38px;
+    input {
+      width: 100px;
+      height: 28px;
+    }
+    i {
+      color: #bfbfbf;
+      margin-left: 10px;
+    }
+  }
+
+  &-save {
+    padding: 10px 0;
+    border-top: 1px solid #e6e6e6;
+    text-align: center;
+    button {
+      width: 120px;
+      font-size: 14px;
+    }
+  }
+}

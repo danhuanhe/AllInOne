@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - ./cubex:/app/cubex
+      - ./qiyu/:/app/qiyu
+      - ./site/:/app/site
+    ports:
+      - "8099:8099"
+# 常用命令
+# docker-compose up --build  重新构建镜像后再启动，旧的镜像如果不需要可以删掉了。推荐使用这个
+# docker-compose up    启动环境
+# docker-compose up -d 启动环境，运行在后台。
+# docker-compose --help 查看docker-compose帮助
+# docker images 查看所有镜像
+# docker rmi ${镜像名称或者id} 删除镜像

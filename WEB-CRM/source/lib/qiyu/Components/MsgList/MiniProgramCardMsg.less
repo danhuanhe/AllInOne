@@ -1,0 +1,71 @@
+@import './mixin.less';
+.m-msgList .msg-miniProgramCard {
+	@bgColor: #ffffff;
+	@borderColor: #d5d5d5;
+	.msg-nosys;
+	.msg-bubble {
+		padding: 0;
+		border: 1px solid @borderColor;
+	}
+	&.msg-left {
+		.msg-bubble {
+			background-color: @bgColor;
+			&:before {
+				border-right-color: @borderColor;
+			}
+			&:after {
+				left: -4px;
+				border-right: 6px solid @bgColor;
+			}
+		}
+	}
+	&.msg-right {
+		.msg-bubble {
+			background-color: @bgColor;
+			&:before {
+				border-left-color: @borderColor;
+			}
+			&:after {
+				right: -4px;
+				border-left: 6px solid @bgColor;
+			}
+		}
+	}
+	.minicard-head {
+		display: flex;
+		align-items: center;
+		padding: 10px;
+		.avatar {
+			width: 20px;
+			height: 20px;
+			margin-right: 5px;
+		}
+	}
+	.minicard-name {
+		display: inline-block;
+		max-width: 200px;
+		.ellipsis;
+	}
+	.minicard-title {
+		padding: 5px 10px;
+    	font-size: 16px;
+    	line-height: 22px;
+	}
+	.minicard-cover {
+		padding: 5px 10px 20px 10px;
+		img {
+			width: 208px;
+		}
+	}
+	.minicard-foot {
+		padding: 5px 10px;
+		border-top: 1px solid @borderColor;
+		display: flex;
+		align-items: center;
+		i {
+			color: #aeaeae;
+			font-size: 16px;
+			margin-right: 5px;
+		}
+	}
+}

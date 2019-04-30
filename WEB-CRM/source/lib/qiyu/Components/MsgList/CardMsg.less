@@ -1,0 +1,86 @@
+@import './mixin.less';
+/* stylelint-disable */
+.m-msgList {
+    .msg-card {
+		.msg-nosys;
+		.template-pictureLink {
+			width: auto;
+			img {
+				max-width: 290px;
+				max-height: 370px;
+			}
+		}
+		.template-default {
+			.product-info {
+				color: #222;
+				.clearfix;
+				img {
+					float: left;
+					width: 100px;
+					height: 100px;
+					margin-right: 10px;
+				}
+				.info {
+				}
+				.info.z-order {
+					.desc {
+						display: flex;
+					}
+					.left {
+						flex: 1;
+						.ellipsis-multiple-line-3;
+					}
+					.right {
+						max-width: 40px;
+						margin-left: 5px;
+						text-align: right;
+					}
+					.pay-money {
+						color: #222;
+						.ellipsis;
+					}
+					.order-count {
+						margin-top: 5px;
+						.ellipsis;
+					}
+					.note {
+						display: flex;
+					}
+					.order-sku {
+						flex: 1;
+						color: #666;
+						.ellipsis;
+					}
+					.order-status {
+						max-width: 50%;
+						.ellipsis;
+					}
+				}
+				.tlt {
+					.ellipsis;
+				}
+				.desc {
+					margin-top: 5px;
+					font-size: 12px;
+					color: #666;
+					.ellipsis-multiple-line-3;
+					word-break: break-all;
+				}
+				.note {
+					margin-top: 5px;
+					color: #ff611b;
+				}
+			}
+			.order-info {
+				margin-top: 10px;
+				.tlt, .time {
+					line-height: 2;
+				}
+			}
+			.activity-info {
+				margin-top: 10px;
+				.ellipsis;
+			}
+		}
+	}
+}

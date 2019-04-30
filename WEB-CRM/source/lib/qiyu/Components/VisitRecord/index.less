@@ -1,0 +1,31 @@
+@import (reference) "../../assets/css/common/mixin.less";
+
+.m-visitRecord {
+    .m-record-item {
+        .icon-hints-notification-f {
+            
+        }
+    }
+    .show-detail {
+        cursor: pointer;
+    }
+}
+
+/* popover */
+.m-visitRecord-popover {
+    .fishd-popover-inner {
+        width: 362px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+}
+.m-visitRecord-detail {
+    .m-record-item-info {
+        display: flex;
+        flex-direction: row;
+        .title {
+            flex: 1;
+            .ellipsis();
+        }
+    }
+}
