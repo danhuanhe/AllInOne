@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www.js"
+    "dev": "node ./bin/dev.js && node ./bin/www.js",
+    "start": "node ./bin/prod.js && node ./bin/www.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

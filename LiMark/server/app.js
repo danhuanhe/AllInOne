@@ -8,19 +8,26 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dailyRouter = require('./routes/daily');
 var Freemarker=require('./freemarker');
+process.env.NODE_ENV = "prod";
+var my__dirname=__dirname;console.log(process.env.NODE_ENV);
 
-var p__dirname=__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
+var p__dirname=my__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
+
+if(process.env.NODE_ENV == "prod"){
+  p__dirname=p__dirname+"\\publish";//console.log(my__dirname);
+}
+
 var app = express();
-
+//console.log(p__dirname);
 app.engine('ftl', function (filePath, options, callback) { // define the template engine
-  const viewroot=path.join(p__dirname, 'views');
+  const viewroot=path.join(p__dirname, 'views');console.log(viewroot);
   fm = new Freemarker({
     viewRoot:viewroot,
     options: {
       sourceEncoding: 'utf-8'
     }
-  });console.log(filePath);
-  const ftlFile=filePath.substring(viewroot.length+1);
+  });
+  const ftlFile=filePath.substring(viewroot.length+1);console.log(ftlFile);
   var rendered=fm.renderSync(ftlFile,options);
   return callback(null, rendered);
 });
@@ -32,8 +39,8 @@ app.set('view engine', 'ftl');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(p__dirname, 'public')));
+app.use(cookieParser());console.log(path.join(p__dirname, 'static'));
+app.use(express.static(path.join(p__dirname, 'static')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', dailyRouter);
@@ -51,7 +58,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error',{
+    message:res.locals.message,
+    error:res.locals.error
+  });
 });
 
 module.exports = app;

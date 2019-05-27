@@ -4,7 +4,7 @@ var dbdaily= require('../dal/mongodb/daily');
 var dbdailyItem= require('../dal/mongodb/dailyitem');
 /* GET home page. */
 router.get('/daily', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('daily/daily', { title: 'Express' });
 });
 
 router.get('/api/dailylist',function(req, res, next){

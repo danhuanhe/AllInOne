@@ -27,21 +27,21 @@ if (replMode) {
  * @type {Object}
  */
 const Mode2PublicPath = {
-  'test': '/callcenterres/',
-  'debug': '/callcenterres/',
-  'release': 'https://qiyukf.nosdn.127.net/callcenter/',
-  'online': 'https://qiyukf.nosdn.127.net/callcenter/'
+  'test': '/js/',
+  'debug': '/js/',
+  'release': '/js/',
+  'online': '/js/'
 };
 
 
-const viewsPath = '/views/';
+const viewsPath = '../views/';
 const mockPath = [];
 // 压缩混淆代码开关，默认开启
 let minimize = (mode != 'debug');
 const sourceMap = !minimize;
 
-travelDir('.' + viewsPath, mockPath);
-
+travelDir(viewsPath, mockPath);
+console.log(viewsPath, mockPath);
 const getHappyPackPlugin = () => [
   new HappyPack({
     id: 'happyTS',
@@ -92,8 +92,8 @@ const getHappyPackPlugin = () => [
     verbose: true,
   }),
   new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true })
-];
-
+];console.log(__dirname);
+const p__dirname=__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
 const getHtmlWebpackPlugin = () => {
   // generate ftl plugin
   const htmlWebpackPlugin = mockPath
@@ -102,10 +102,11 @@ const getHtmlWebpackPlugin = () => {
       return pt.indexOf(`${path.sep}common${path.sep}`) === -1;
     })
     .map((pt) => {
-      const chunkName = getEntireName(pt);
+      pt=pt.substring(2);//..\\a\\b\\c 转化为 
+      const chunkName = getEntireName(pt);console.log(`${p__dirname}${pt}`);
       return new HtmlWebpackPlugin({
-        filename: `${__dirname}/dist/templates/${chunkName}.ftl`,
-        template: `${__dirname}/${pt}`,
+        filename: `${p__dirname}/publish/views/${chunkName}.ftl`,
+        template: `${p__dirname}${pt}`,
         inject: true,
         minify: false
       });
@@ -114,7 +115,8 @@ const getHtmlWebpackPlugin = () => {
 };
 
 // more info: https://github.com/isaacs/node-glob
-const newEntries = getEntries(['./source/entries/**/*.js']);
+const newEntries = getEntries(['./src/entries/**/*.js']);
+console.log(newEntries);
 // 库和工具, 公用率 使用频率	更新频率：高 高	低
 const libs = {
   'babel-polyfill': 'babel-polyfill',
@@ -172,7 +174,7 @@ export default {
   entry: newEntries,
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
-    path: `${__dirname}/dist/static`,
+    path: `${p__dirname}/publish/static/js`,
     publicPath: Mode2PublicPath[mode],
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js'
@@ -191,15 +193,16 @@ export default {
     .concat([
       // views/common文件夹直接拷贝到dist, to的路径相对于publicPath
       new CopyWebpackPlugin([{
-        context: './views/',
+        context: '../views/',
         from: './common/**/*',
-        to: '../templates'
-      }]),
-      new CopyWebpackPlugin([{
-        context: './source/vendor/',
-        from: '**/*',
-        to: './vendor'
+        to: '../../views'
       }])
+      // ,
+      // new CopyWebpackPlugin([{
+      //   context: './src/vendor/',
+      //   from: '**/*',
+      //   to: './vendor'
+      // }])
     ]),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']

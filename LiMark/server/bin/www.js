@@ -7,7 +7,7 @@ var config = require('../config');
 var app = require('../app');
 var debug = require('debug')('svr:server');
 var http = require('http');
-
+process.env.NODE_ENV = "prod";
 /**
  * Get port from environment and store in Express.
  */

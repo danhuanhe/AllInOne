@@ -8,7 +8,7 @@ var fmpp = require('./lib/fmpp.js');
 
 function nop() {}
 function getTmpFileName() {
-  return path.join(os.tmpDir(), uuidv4()).replace(/\\/g, '/');
+  return path.join(os.tmpdir(), uuidv4()).replace(/\\/g, '/');
 }
 
 function writeTmpFile(data, done) {
@@ -38,7 +38,7 @@ function Freemarker(settings) {
     fmpOpts.sourceRoot = settings.viewRoot;
   }
   if(!fmpOpts.outputRoot) {
-    fmpOpts.outputRoot = os.tmpDir();
+    fmpOpts.outputRoot = os.tmpdir();
   }
 
   // Convert folder seperate in case of Windows
@@ -114,13 +114,14 @@ Freemarker.prototype.render = function(tpl, data, done) {
 Freemarker.prototype.renderSync = function(tpl, data) {
   var dataTdd = convertDataModel(data);
   var tplFile = path.join(this.viewRoot, tpl).replace(/\\/g, '/');
-
+//console.log(tplFile);
   // Make configuration file for fmpp
   var cfgDataObject = this.options;
   cfgDataObject.data = dataTdd;
 
   // Set output file
   var tmpFile = getTmpFileName();
+  
   cfgDataObject.outputFile = tmpFile;
 
   var cfgContent = generateConfiguration(cfgDataObject);
@@ -129,11 +130,17 @@ Freemarker.prototype.renderSync = function(tpl, data) {
   var result = '';
   try {
     var cfgFile = writeTmpFileSync(cfgContent);
+    
     var args = [tplFile, '-C', cfgFile];
+    //console.log(args);
     output = fmpp.runSync(args);
-
+    console.log(111111);
     // Wait for tmpFile created
-    while(!fs.existsSync(tmpFile)){}
+    console.log(tmpFile);
+    while(!fs.existsSync(tmpFile)){
+     // console.log(22222);
+    } 
+    console.log(3333);
     result = fs.readFileSync(tmpFile);
   } catch(e) {
     output = e;
