@@ -7,7 +7,7 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     </@headWrapper>
-    <@bodyWrapper>22222222222222
+    <@bodyWrapper>
       <@setting />
       <@serverRenderReactDOM />
     </@bodyWrapper>

@@ -3,7 +3,7 @@ import {Popover, Layout,Menu,Modal} from 'antd';
 const {Content, Sider,Header,Footer} = Layout;
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
+import {PAGE_SIZE} from '../constants';
 import {setCurrent,setTotalNum,getDailyList,saveDaily,deleteDailys,getDailyById} from "./actions";
 
 import DailyList from './dailyList';
@@ -34,8 +34,13 @@ class Daily extends Component{
 
     console.log(fromdata);
     this.setState({visible:false});
-    const {saveDaily} = this.props;
-    saveDaily(fromdata);
+    const {saveDaily,setCurrent,getDailyList} = this.props;
+    saveDaily(fromdata,()=>{
+      setCurrent(1);
+      getDailyList(
+        {current:1 , limit: PAGE_SIZE,sort:-1,sortby:"_id"}
+      );
+    });
   }
 
   handleTableRowClick=(id)=>{console.log(id);

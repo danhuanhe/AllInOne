@@ -104,7 +104,7 @@ class DailyItem extends Component{
                 })(
                   <Select 
                     placeholder="请选择分类">
-                    {DAILY_ITEM_TYPE.map(item => <Select.Option value={item.key} key={item.key}>{item.label}</Select.Option>)}
+                    {DAILY_ITEM_TYPE.map(item => <Select.Option value={item.key.toString()} key={item.key.toString()}>{item.label}</Select.Option>)}
                   </Select>
                 )}
             </FormItem>
@@ -118,7 +118,7 @@ class DailyItem extends Component{
                 })(
                   <Select 
                     placeholder="请选择重要程度">
-                    {DAILY_ITEM_LEVEL.map(item => <Select.Option value={item.key} key={item.key}>{item.label}</Select.Option>)}
+                    {DAILY_ITEM_LEVEL.map(item => <Select.Option value={item.key.toString()} key={item.key.toString()}>{item.label}</Select.Option>)}
                   </Select>
                 )}
             </FormItem>

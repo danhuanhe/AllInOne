@@ -44,6 +44,7 @@ class DailyList extends Component{
   };
 
   deleteDaily=(record)=>{
+    const _this=this;
     Modal.confirm({
       title: '确定要删除所选记录吗?',
       content: '删除后将无法找回',
@@ -51,9 +52,9 @@ class DailyList extends Component{
       okType: 'danger',
       cancelText: '取消',
       onOk() {
-        this.props.deleteDailys([record._id],(json)=>{
+        _this.props.deleteDailys([record._id],(json)=>{
           console.log(json);
-          this.loadList();
+          _this.loadList();
         });
       },
       onCancel() {

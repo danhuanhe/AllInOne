@@ -15,13 +15,16 @@ var dbhelper = require('../../dbdriver/mongodb');
 
 exports.findDaily = function (query,cb) {console.log(query);
   var _sort={};
-  _sort[query.sortby]=+query.sort;
+  if(query.sort){
+    _sort[query.sortby]=+query.sort;
+  }
+  
   var options={
-    limit:+query.limit,
-    skip:+query.offset,
+    limit:+query.limit||9999999,
+    skip:+query.offset||0,
     sort:_sort
   };
-  
+
   delete query.limit;delete query.offset;delete query.sort;delete query.sortby;
   dbhelper.findData(collname,query, options,cb);
 };

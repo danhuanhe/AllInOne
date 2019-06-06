@@ -34,14 +34,14 @@ class DailyModal extends Component{
         "content" : "无",
         items:[
          {
-            "id":1,
+            "_id":1,
             "money" : 0,
             "time" : 0,
             "place" : "",
             "persons" : "",
             "content" : "",
-            "type" : 0,
-            "level" : 2,
+            "type" : "2",
+            "level" : "2",
             _edit:1
           }
         ]
@@ -56,8 +56,14 @@ class DailyModal extends Component{
   onSave=()=>{
     //console.log(this.itemForm.props.form);
    // console.log(this.itemForm.props.form.getFieldsValue());
-    console.log(this.state.detail);
-    this.props.handleCreate(JSON.stringify(this.state.detail));
+   
+    let ddd=JSON.parse(JSON.stringify(this.state.detail));
+    //Object.assign(ddd,this.state.detail);
+    ddd.items.map((item)=>{
+        delete item._id;
+    });
+    console.log(ddd);
+    this.props.handleCreate(JSON.stringify(ddd));
   }
 
   handleSaveItem=(data)=>{
@@ -80,14 +86,14 @@ class DailyModal extends Component{
       crt._edit=0;
     });
     this.state.detail.items.unshift({
-      "id":new Date().getTime(),
+      "_id":new Date().getTime(),
       "money" : 0,
       "time" : 0,
       "place" : "",
       "persons" : "",
       "content" : "",
-      "type" : 0,
-      "level" : 0,
+      "type" : "2",
+      "level" :"2",
       _edit:1
     });
     this.setState({
@@ -97,7 +103,7 @@ class DailyModal extends Component{
   editItem=(item,setval)=>{
      this.state.detail.items.map((crt)=>{
        crt._edit=0;
-       if(item.id==crt.id){
+       if(item._id==crt._id){
         crt._edit=setval==undefined?1:setval;
        }
      });console.log(this.state.detail);
@@ -163,7 +169,7 @@ class DailyModal extends Component{
         </div>
         {detail.items.map((item,index) =>
         item._edit?
-        <DailyItem handleSaveItem={this.handleSaveItem} handleCancelItem={this.handleCancelItem} key={item.id} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item.id}>
+        <DailyItem handleSaveItem={this.handleSaveItem} handleCancelItem={this.handleCancelItem} key={item._id} item={item} wrappedComponentRef={(form) => this.itemForm = form} />:<div key={item._id}>
           <div className="items-show">
           <span className="links">
           <a onClick={()=>{this.editItem(item);}}>编辑</a>

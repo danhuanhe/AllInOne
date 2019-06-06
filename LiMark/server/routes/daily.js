@@ -23,7 +23,7 @@ router.get('/api/daily/get',function(req, res, next){
       var q=req.query;
       dbdaily.findDaily({
         _id:+q.id
-      },function (result) {
+      },function (result) {console.log(result);
          var daily=result.data;
          if(daily.length){
             daily=daily[0];

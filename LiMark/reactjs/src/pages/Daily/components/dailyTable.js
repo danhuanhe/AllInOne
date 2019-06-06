@@ -93,7 +93,7 @@ const DailyTable = props => {
     onRow: (record) => {
       return {
         onClick: () => {
-          props.onRowClick(record);
+          //props.onRowClick(record);
         }
       };
     },

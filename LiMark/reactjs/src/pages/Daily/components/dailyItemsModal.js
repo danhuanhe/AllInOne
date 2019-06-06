@@ -83,7 +83,7 @@ class DailyItemsModal extends Component{
        
         <hr/>
         {detail.items.map((item,index) =>
-        <div key={item.id}>
+        <div key={item._id}>
           <div className="items-show">
           <span className="links">
           <a onClick={()=>{this.delItem(index);}}>删除</a>
