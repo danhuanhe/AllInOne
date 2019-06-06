@@ -142,7 +142,7 @@ export default {
         parallel: true,
         uglifyOptions: {
           compress: {
-            warnings: false
+            //warnings: false
           }
         }
       }) : null,

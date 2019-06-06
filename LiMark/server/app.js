@@ -40,7 +40,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());console.log(path.join(p__dirname, 'static'));
-app.use(express.static(path.join(p__dirname+"\\publish", 'static')));
+app.use(express.static(path.join(p__dirname, 'static')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', dailyRouter);

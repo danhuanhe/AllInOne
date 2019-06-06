@@ -7,12 +7,16 @@ var config = require('../config');
 var app = require('../app');
 var debug = require('debug')('svr:server');
 var http = require('http');
-process.env.NODE_ENV = "prod";
+//process.env.NODE_ENV = "prod";
+console.log(process.env.NODE_ENV,111111);
 /**
  * Get port from environment and store in Express.
  */
-
-var port = normalizePort(config.port || '3000');
+var _port=config.port;
+if(process.env.NODE_ENV == "prod"){
+  _port=config.prodPort;
+}
+var port = normalizePort(_port || '80');
 app.set('port', port);
 
 /**

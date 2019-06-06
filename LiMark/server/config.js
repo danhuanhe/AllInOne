@@ -4,6 +4,7 @@ var config = {
     dbName:"limark",
     //docDir: "D:/TestCodes/msite/webapp1/",//网站所在的磁盘目录
     port:8000,
+    prodPort:80,
     // //网站默认的路由规则
     // router: {
     //     "url": "{controller}/{action}/{id}/{page}",
