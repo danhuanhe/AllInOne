@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var dailyRouter = require('./routes/daily');
 var Freemarker=require('./freemarker');
 //process.env.NODE_ENV = "prod";
-var my__dirname=__dirname;//console.log(process.env.NODE_ENV);
+var my__dirname=__dirname;console.log(process.env.NODE_ENV);
 
 var p__dirname=my__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
 

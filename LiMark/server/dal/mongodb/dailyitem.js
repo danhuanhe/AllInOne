@@ -18,7 +18,7 @@ var collname="dailyitem";
 var dbhelper = require('../../dbdriver/mongodb');
 
 exports.findItems = function (where,cb) {
-  dbhelper.findData(collname, {}, where,cb);
+  dbhelper.findData(collname,where, {},cb);
 };
 
 

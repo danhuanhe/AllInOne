@@ -9,7 +9,31 @@ import DailyItem from './dailyItem';
 const modulePrefix = 'm-daily-modal';
 
 const FormLayout = { labelCol: { span: 3 }, wrapperCol: { span: 13, offset: 0 } };
-
+const defaultDaily={
+  "type":0,
+  "accountId" : 0,
+  "date":"2019-02-01",
+  "createTime" :new Date().getTime(),
+  "editTime" : new Date().getTime(),
+  "creatorId" : 0,
+  "creator" : "admin",
+  "sumMoney" : 0,
+  "content" : "无",
+  items:[
+   {
+      "_id":1,
+      "money" : 0,
+      "time" : 0,
+      "place" : "",
+      "persons" : "",
+      "content" : "",
+      "type" : "2",
+      "level" : "2",
+      _edit:1
+    }
+  ]
+};
+const defaultDailyStr=JSON.stringify(defaultDaily);
 class DailyModal extends Component{
 
   static propTypes = {
@@ -22,31 +46,14 @@ class DailyModal extends Component{
   constructor(props) {
     super(props);
     this.state={
-      detail:{
-        "type":0,
-        "accountId" : 0,
-        "date":"2019-02-01",
-        "createTime" :new Date().getTime(),
-        "editTime" : new Date().getTime(),
-        "creatorId" : 0,
-        "creator" : "admin",
-        "sumMoney" : 0,
-        "content" : "无",
-        items:[
-         {
-            "_id":1,
-            "money" : 0,
-            "time" : 0,
-            "place" : "",
-            "persons" : "",
-            "content" : "",
-            "type" : "2",
-            "level" : "2",
-            _edit:1
-          }
-        ]
-      }
-      
+      detail:defaultDaily
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.visible&&!this.props.visible){
+      this.setState({
+        detail:JSON.parse(defaultDailyStr)
+      });
     }
   }
   detailDateChange=(moment)=>{
@@ -54,11 +61,8 @@ class DailyModal extends Component{
     this.state.detail.date=moment._d.getTime();
   }
   onSave=()=>{
-    //console.log(this.itemForm.props.form);
-   // console.log(this.itemForm.props.form.getFieldsValue());
-   
+    this.handleSaveItem();//先保存小项
     let ddd=JSON.parse(JSON.stringify(this.state.detail));
-    //Object.assign(ddd,this.state.detail);
     ddd.items.map((item)=>{
         delete item._id;
     });
@@ -66,7 +70,16 @@ class DailyModal extends Component{
     this.props.handleCreate(JSON.stringify(ddd));
   }
 
-  handleSaveItem=(data)=>{
+  handleSaveItem=()=>{
+    let data={};
+    if(this.itemForm){
+      data=this.itemForm.props.form.getFieldsValue();
+      if(data.time){
+        data.time=data.time._d.getTime();
+      }else{
+        data.time=new Date().getTime();
+      }
+    }
      let crtEdit=this.state.detail.items.find((a)=>a._edit==1);
      if(crtEdit){
       crtEdit=Object.assign(crtEdit,data);
@@ -82,6 +95,7 @@ class DailyModal extends Component{
     this.editItem(item,false);
   }
   newItem=()=>{
+    this.handleSaveItem();//先保存小项
     this.state.detail.items.map((crt)=>{
       crt._edit=0;
     });

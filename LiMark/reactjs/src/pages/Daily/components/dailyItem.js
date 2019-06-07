@@ -23,17 +23,17 @@ class DailyItem extends Component{
   }
 
   onSave=()=>{
-    //console.log(this.itemForm.props.form);
-    console.log(this.props.form.getFieldsValue());
-    //console.log(this.state.detail);
-    const itemData=this.props.form.getFieldsValue();
-    if(itemData.time){
-      itemData.time=itemData.time._d.getTime();
-    }else{
-      itemData.time=new Date().getTime();
-    }
+    // //console.log(this.itemForm.props.form);
+    // console.log(this.props.form.getFieldsValue());
+    // //console.log(this.state.detail);
+    // const itemData=this.props.form.getFieldsValue();
+    // if(itemData.time){
+    //   itemData.time=itemData.time._d.getTime();
+    // }else{
+    //   itemData.time=new Date().getTime();
+    // }
     
-    this.props.handleSaveItem(itemData);
+    this.props.handleSaveItem();
   }
 
   onCancel=()=>{
@@ -122,12 +122,12 @@ class DailyItem extends Component{
                   </Select>
                 )}
             </FormItem>
-            <FormItem className="ant-form-item-btn" label="  "
+            {/* <FormItem className="ant-form-item-btn" label="  "
                   {...FormLayout}
               >
                <Button onClick={this.onSave} size="small">保存</Button>
                <Button onClick={this.onCancel} size="small">取消</Button>
-            </FormItem>
+            </FormItem> */}
         </Form>
     );
   }

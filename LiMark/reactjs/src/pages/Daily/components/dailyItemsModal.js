@@ -37,7 +37,12 @@ class DailyItemsModal extends Component{
   }
 
   componentWillReceiveProps(nextProps){console.log(nextProps.daily);
-      if(nextProps.daily){
+      // if(nextProps.visible&&!this.props.visible){
+      //   this.setState({
+      //     itemsLoaded:false
+      //   });
+      // }
+      if(nextProps.daily&&nextProps.daily._id!=this.state.detail._id){
         this.setState({
           detail:nextProps.daily,
           itemsLoaded:true
@@ -52,8 +57,13 @@ class DailyItemsModal extends Component{
     });
   }
 
+  handleClose=()=>{
+    const {hideModal } = this.props;
+    this.state.itemsLoaded=false;
+    hideModal();
+  }
   render(){
-    const {hideModal, visible } = this.props;
+    const {visible } = this.props;
     const {detail,itemsLoaded}=this.state;
     return (
       <Modal
@@ -61,10 +71,10 @@ class DailyItemsModal extends Component{
         title="详情"
         width={760}
         visible={visible}
-        onCancel={hideModal}
+        onCancel={this.handleClose}
         footer={
         <div>
-          <Button key="back" onClick={hideModal} className="u-btn-normal" size="large">关闭</Button>
+          <Button key="back" onClick={this.handleClose} className="u-btn-normal" size="large">关闭</Button>
         </div>
         }
       >
@@ -82,12 +92,12 @@ class DailyItemsModal extends Component{
           </div>):<Spin tip="Loading..."></Spin>}
        
         <hr/>
-        {detail.items.map((item,index) =>
+        {itemsLoaded&&detail.items.map((item,index) =>
         <div key={item._id}>
           <div className="items-show">
-          <span className="links">
+          {/* <span className="links">
           <a onClick={()=>{this.delItem(index);}}>删除</a>
-          </span>
+          </span> */}
           <div className="item-show">
             <dl><dt>金额：</dt><dd>{item.money}</dd></dl>
             <dl><dt>时间：</dt><dd>{item.time}</dd></dl>

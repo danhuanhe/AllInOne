@@ -57,6 +57,7 @@ const DailyTable = props => {
         <span className="actions">
           <Icon type="edit" onClick={()=>props.editDaily(record)}/>
           <Icon type="delete" onClick={()=>props.deleteDaily(record)}/>
+          <Icon type="eye" onClick={()=>props.onRowClick(record)}/>
         </span>
       )
     }
@@ -89,13 +90,6 @@ const DailyTable = props => {
     },
     rowSelection:{
       onChange:props.handleRowChange
-    },
-    onRow: (record) => {
-      return {
-        onClick: () => {
-          //props.onRowClick(record);
-        }
-      };
     },
     loading: props.DailyList.isLoading
   };

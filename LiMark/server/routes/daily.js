@@ -3,7 +3,7 @@ var router = express.Router();
 var dbdaily= require('../dal/mongodb/daily');
 var dbdailyItem= require('../dal/mongodb/dailyitem');
 /* GET home page. */
-router.get('/daily', function(req, res, next) {
+router.get('/limark/daily', function(req, res, next) {
   res.render('daily/daily', { title: 'Express' });
 });
 
