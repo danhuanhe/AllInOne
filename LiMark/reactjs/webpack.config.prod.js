@@ -93,7 +93,7 @@ const getHappyPackPlugin = () => [
   }),
   new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true })
 ];console.log(__dirname);
-const p__dirname=__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
+const p__dirname=__dirname.replace(/[\\/]\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
 const getHtmlWebpackPlugin = () => {
   // generate ftl plugin
   const htmlWebpackPlugin = mockPath

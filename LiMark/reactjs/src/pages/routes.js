@@ -11,7 +11,7 @@ const App = (nextState, callback) => {
 
 const Daily = (nextState, callback) => {
   require.ensure([], function(require) {
-    callback(null, require('./daily').default);
+    callback(null, require('./Daily').default);
   }, 'Daily');
 }; 
 

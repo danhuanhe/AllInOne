@@ -11,14 +11,14 @@ var Freemarker=require('./freemarker');
 //process.env.NODE_ENV = "prod";
 var my__dirname=__dirname;console.log(process.env.NODE_ENV);
 
-var p__dirname=my__dirname.replace(/\\\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
+var p__dirname=my__dirname.replace(/[\\/]\w+$/,"");//"E:\1\2\3" 修改为 "E:\1\2"
 
 if(process.env.NODE_ENV == "prod"){
-  p__dirname=p__dirname+"\\publish";//console.log(my__dirname);
+  p__dirname=p__dirname+"/publish";//console.log(my__dirname);
 }
 
 var app = express();
-//console.log(p__dirname);
+console.log(p__dirname,111);
 app.engine('ftl', function (filePath, options, callback) { // define the template engine
   const viewroot=path.join(p__dirname, 'views');console.log(viewroot);
   fm = new Freemarker({
@@ -39,7 +39,7 @@ app.set('view engine', 'ftl');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());console.log(path.join(p__dirname, 'static'));
+app.use(cookieParser());//console.log(path.join(p__dirname, 'static'));
 app.use(express.static(path.join(p__dirname, 'static')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
