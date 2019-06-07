@@ -19,5 +19,6 @@ export default (<Route>
   <Route path={config.ADMIN_ROUTES.HOME} getComponent={App}>
     <IndexRedirect to={config.ADMIN_ROUTES.DAILY}/>
     <Route path={config.ADMIN_ROUTES.DAILY} getComponent={Daily}/>
+    <Route path={config.ADMIN_ROUTES.DAILY+".html"} getComponent={Daily}/>
   </Route>
   </Route>);
