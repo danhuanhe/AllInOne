@@ -104,8 +104,12 @@ const getHtmlWebpackPlugin = () => {
     .map((pt) => {
       pt=pt.substring(2);//..\\a\\b\\c 转化为 
       const chunkName = getEntireName(pt);console.log(`${p__dirname}${pt}`);
+      let _filename=`${p__dirname}/publish/views/${chunkName}`;
+      if(chunkName.indexOf(".html")<0){
+        _filename+=".ftl";
+      }
       return new HtmlWebpackPlugin({
-        filename: `${p__dirname}/publish/views/${chunkName}.ftl`,
+        filename: _filename,
         template: `${p__dirname}${pt}`,
         inject: true,
         minify: false
@@ -196,6 +200,11 @@ export default {
         context: '../views/',
         from: './common/**/*',
         to: '../../views'
+      }]),
+      new CopyWebpackPlugin([{
+        context: '../publish/views/',
+        from: './daily/*.html',
+        to: '../../static'
       }])
       // ,
       // new CopyWebpackPlugin([{
