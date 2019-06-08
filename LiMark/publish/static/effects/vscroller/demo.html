@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        .p-sroller-wrap{
+            overflow:hidden;border:solid 1px #ddd;
+            width:200px;height:100px; 
+        }
+        .p-sroller { width:calc(100% + 30px);height:100%; overflow:auto;}
+        .p-sroller .wrap { padding-bottom: 50px; }
+        .p-sroller .cont {  background-color: #ee9; }
+        .p-sroller .item {  background-color:#eee; overflow:hidden;}
+        div.p-sroller.sss { border:solid 2px #dd0; }
+    </style>
+</head>
+<body>
+    <div class="p-sroller-wrap">
+            <div class="p-sroller ">
+
+                </div>
+    </div>
+    
+    <script src="../../lib/zepto/zepto.min.js"></script>
+    <script>
+        var data = [];
+        for (var a = 1; a <= 20; a++) {
+            var vvv = a.toString();
+            for (var b = 0; b < 4; b++) {
+                vvv += "" + a;
+            }
+            data.push({ a: vvv,b:a });
+        }
+
+        function vScroller(scrollC, data, options) {
+            if (!data) {
+                return;
+            }
+            if (!scrollC.length) {
+                scrollC = $(scrollC);
+                if (!scrollC.hasClass("p-sroller")) {
+                    scrollC.addClass("p-sroller")
+                }
+            }
+            var contC = $('<div class="wrap"></div>');
+            scrollC.append(contC);
+            var opts = $.extend({ speed: 16, speedMove: 1 }, options);
+
+            var num = options.showNum||5;
+            var forNum=0;
+            if (data.length < num * 2) {
+                    data = data.concat(data);
+              
+            }
+            var addNum = 2;
+            var cHtml = "";
+            var showDD = data.slice(0, num * addNum);
+            data.splice(0, num * addNum);
+            data = data.concat(showDD);
+            var _nweDiv = $("<div class='cont'></div>");
+            
+           
+            for (var i = 0; i < showDD.length; i++) {
+                var tpl = opts.tpl;
+                for (var kkk in showDD[i]) {
+                    tpl = tpl.replace("{" + kkk + "}", showDD[i][kkk.toString()]);
+                }
+                cHtml += '<div class="item">' + tpl + '</div>';
+            }
+            _nweDiv.html(cHtml);
+            contC.append(_nweDiv);
+
+            var _top = 0;
+            var _moveNum = 0;
+            var _itemHeight = contC.find(".item")[0].offsetHeight; console.log(_itemHeight);
+            var _cHeight = scrollC.height();
+            var _sHeight = scrollC[0].scrollHeight;
+          
+            var _go = function () {
+                window.setTimeout(function () {
+                    _top += opts.speedMove;
+                    _moveNum += opts.speedMove;
+                    scrollC.scrollTop(_top);
+
+                    if (_moveNum >= _itemHeight * num) {
+                        _moveNum = 0;
+                        _nweDiv = $("<div class='cont'></div>");
+                         showDD = data.slice(0, num);
+                        data.splice(0, num);
+                        data = data.concat(showDD);
+                        cHtml = "";
+                        for (var i = 0; i < showDD.length; i++) {
+                            var tpl = opts.tpl;
+                            for (var kkk in showDD[i]) {
+                                tpl = tpl.replace("{" + kkk + "}", showDD[i][kkk.toString()]);
+                            }
+                            cHtml += '<div class="item">' + tpl + '</div>';
+                        }
+                        _nweDiv.html(cHtml);
+                        contC.append(_nweDiv);
+
+                        addNum++;
+                        if (addNum > 4) {
+                            var cHilds = contC.children();
+                           
+                            _top -= $(cHilds[0]).height() + opts.speedMove;
+                            $(cHilds[0]).remove();
+                        }
+                    }
+                    _go();
+                }, opts.speed);
+            }
+            _go();
+        }
+        vScroller($("div.p-sroller"), data, {
+            tpl:"<p>{a}--{b}</p>"
+        });
+    </script>
+</body>
+</html>
