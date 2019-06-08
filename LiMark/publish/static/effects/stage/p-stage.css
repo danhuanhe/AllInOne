@@ -1,0 +1,69 @@
+﻿html, body {height:100%; margin:0;padding:0;font-size:12px;font-family:'微软雅黑','宋体';overflow:hidden;}
+ul, dl, dt, dd, li, ol,h1,h2,h3,p {margin:0;padding:0; }
+.p-stage-act { visibility:hidden;max-width:1024px; background:#eee; position:relative;height:100%;}
+.p-stage-actting,.p-stage-view { visibility:visible;}/*，在预览和播放状态下才显示，避免页面闪烁*/
+.p-stage-scene{ width:100%;height:100%;min-height:300px;display:none;position:absolute;top:0;left:0;overflow:hidden; z-index:1; background-color:#fff; background-repeat:no-repeat; -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none; -webkit-background-size:100% 100%;-o-background-size:100% 100%;-moz-background-size:100% 100%;background-size:100% 100%; color:#666;font-size:14px;text-align:center;line-height:20px;
+-webkit-transform: translate3d(0, 0, 0);-moz-transform: translate3d(0, 0, 0);-ms-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);
+}
+.p-stage-view {overflow:auto;  }
+.p-stage-view .p-stage-scene { position:relative; display:block;}
+.p-stage-scene>header {margin:10px 0; font-size:24px;line-height:30px; text-align:center;}
+.p-stage-scene>header h1 { font-size:24px;line-height:30px;}
+.p-stage-scene>header h2 { font-size:18px;line-height:24px;}
+
+.p-stage-scene-chld {width:100%;height:100%;min-height:300px;display:none;position:absolute;top:0;left:0; background-color:#fff; overflow:hidden;}
+.p-stage-scene-chld-show { display:block;}
+
+.p-stage-actor {opacity:1; position:relative;text-align:left;}
+.p-stage-actor h1 {font-size:16px;line-height:30px; }
+.p-stage-actor p { line-height:22px;font-size:14px;}
+
+/*首页提示滑动手势*/
+.p-stage-navicon {z-index:100; position:absolute;bottom:-5px;left:50%; margin-left:-30px; height:50px;width:50px;background:url(images/firstpage-icon.png) no-repeat 0 -115px;background-size:100px auto; -webkit-animation:array2top 2s linear infinite;animation:array2top 2s linear infinite;}
+
+/*音乐播放按钮*/
+.p-stage-music {-webkit-animation:musicplaystop 1s linear infinite;animation:musicplaystop 1s linear infinite;z-index: 100; overflow:hidden; position: absolute; bottom: 10px; left: 10px; height: 30px; width: 30px; background: url(images/18icons.png) no-repeat -9px -142px;border:2px solid #fff;-webkit-border-radius:50% 50%;border-radius:50% 50%; background-size:50px auto; -webkit-transform: rotate(0deg);transform: rotate(0deg); }
+.p-stage-music-play {-webkit-animation:musicplay 1s linear infinite;animation:musicplay 1s linear infinite; background-position:-10px -70px; }
+.p-stage-music audio { visibility:hidden;}
+/*首页加载样式*/
+.p-stage-load { left:0; text-align:center;}
+.p-stage-load div {position:relative;top:50%;margin-top:-80px;z-index:1000; }
+.p-stage-load h1{color:#333;font-size:18px;color:#666;line-height:50px; }
+.p-stage-loading {position:relative;top:10px;left:0; display:inline-block;width:59px;height:59px; opacity:0.7; -webkit-animation:loading 2s linear infinite;animation:loading 2s linear infinite; background:url(images/yuan1.png); }
+.p-stage-loading-dis {-webkit-animation:musicplaystop 2s linear infinite;animation:musicplaystop 2s linear infinite; }
+
+@-webkit-keyframes musicplay{
+	0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+	100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+
+@-webkit-keyframes musicplaystop{
+	0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+	100%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+}
+
+@-webkit-keyframes loading{
+	0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+	100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+}
+
+@-webkit-keyframes backscale{
+	0%{background-size:120% 120%; background-position:-20px -20px;}
+    100%{background-size:100% 100%;background-position:0 0;}
+}
+
+@-webkit-keyframes array2top{
+	0%{bottom:-15px;opacity:0;}
+	40%{bottom:0;opacity:0.7;}
+    80%{bottom:10px;opacity:0;}
+    100%{bottom:10px;opacity:0;}
+}
+@keyframes array2top{
+	0%{bottom:-15px;opacity:0;}
+	40%{bottom:0;opacity:0.7;}
+    80%{bottom:10px;opacity:0;}
+    100%{bottom:10px;opacity:0;}
+}
+
+
+
