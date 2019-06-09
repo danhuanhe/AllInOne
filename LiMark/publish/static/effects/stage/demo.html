@@ -416,7 +416,8 @@
         //imgTextsPlayer_View();
         var screenIndex=0;
         var screensObj= new Stage({
-        	musicPlayer:musicPlayer,sceneChanged:function(newScene,oldScene){
+            musicPlayer:musicPlayer,
+            sceneChanged:function(newScene,oldScene){
         	var index=newScene.index;
         	if(screenIndex==8&&index==7){
         		$("#screen8").find(" .zplb a").removeClass("crt");

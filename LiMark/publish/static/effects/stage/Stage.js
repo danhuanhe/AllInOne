@@ -803,6 +803,13 @@
                 that.crtScene.showPrev();
             }
         };
+        var _playMusic=function(musicPlayer){
+            try{
+                musicPlayer.play();
+            }catch(e){
+                console.log(e.message);
+            }
+        };
         var initAudio=function(){
         	/*以下都是音乐播放相关*/
             if (that.opts.musicUrl||that.opts.musicPlayer) {
@@ -814,8 +821,8 @@
             		musicPlayer = audioWrap.find("audio")[0];
             	}else{
             		musicPlayer = that.opts.musicPlayer;
-            	}
-            	musicPlayer.play();
+                }
+                _playMusic(musicPlayer);
             	musicPlayer._isPaused=false;
             	that.musicPlayer=musicPlayer;
                 musicPlayer.addEventListener("pause", function (e) {
@@ -826,7 +833,7 @@
                 musicPlayer.addEventListener("timeupdate", function (e) {
                     //开始播放后，音乐按钮改变
                     if (!musicPlayer.paused && musicPlayer.currentTime > 1 && !audioWrap.hasClass("p-stage-music-play")) {
-                        musicPlayer.play();
+                        _playMusic(musicPlayer);
                         audioWrap.addClass("p-stage-music-play");
                         musicPlayer.__playing = true;
                     }
@@ -839,7 +846,7 @@
                 audioWrap.bind(mouseDownName, function (e) {
                     if (musicPlayer.__playing != true) {
                         musicPlayer.__playing = true;
-                        musicPlayer.play();
+                        _playMusic(musicPlayer);
                         musicPlayer._isPaused=false;
                     } else {
                         $(this).removeClass("p-stage-music-play");
@@ -859,7 +866,7 @@
                             }
                             musicPlayer.__playing = true;
                             //audioWrap.addClass("p-stage-music-play");
-                            musicPlayer.play();
+                            _playMusic(musicPlayer);
                             musicPlayer._isPaused=false;
 
                         });
