@@ -29,21 +29,43 @@
   </audio>
 </div>
  <div class="p-stage-act">
-    <div id="screen1"></div>
-    <div id="screen2"></div>
-    <div id="screen3"></div>
-    <div id="screen4"></div>
-    <div id="screen5"></div>
-    <div id="screen6"></div>
-    <div id="screen7"></div>
-    <div id="screen8"></div>
+    <div id="screen1">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen2">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen3">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen4">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen5">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen6">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen7">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen8">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
 </div>
 <script src="../../lib/zepto/zepto.min.js"></script>
-<script src="../../lib/zepto/zepto.touch.js"></script>
     <script src="Stage.js"></script>
      <script type="text/javascript">
-         var isMobile = window.navigator.userAgent.toLowerCase().indexOf("mobile") != -1;
-         var musicPlayer=document.getElementById("myMusic");
+        var musicPlayer=document.getElementById("myMusic");
         var screenIndex=0;
         var screensObj= new Stage({
             musicPlayer:musicPlayer,
@@ -56,13 +78,6 @@
         window.onload = function () {
             screensObj.start();
         };
-        if(isMobile){
-        	// $("body")[0].addEventListener('touchmove', function(event) { 
-        	// 	if(screenIndex!=10&&screenIndex!=9){
-        	// 		event.preventDefault(); 
-        	// 	}
-     		//  }, false);
-        }
 
     </script>
 </body>
