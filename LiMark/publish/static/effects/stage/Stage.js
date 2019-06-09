@@ -805,7 +805,7 @@
         };
         var _playMusic=function(musicPlayer){
             try{
-                //musicPlayer.play();
+                musicPlayer.play();
             }catch(e){
                 console.log(e.message);
             }
