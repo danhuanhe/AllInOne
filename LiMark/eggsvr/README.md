@@ -31,3 +31,5 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+[graphql]: https://graphql.cn/
+[egg-src]: https://github.com/search?q=org%3Aeggjs+egg-view&unscoped_q=egg-view
