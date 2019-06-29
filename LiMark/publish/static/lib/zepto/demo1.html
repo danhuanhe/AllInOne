@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>demo1</title>
+    <script src="zepto.min.js"></script>
+    <script src="zepto.fx.js"></script>
+</head>
+<body>
+    <div id="div1" style="background-color:#eee;font-size:12px; position:absolute;top:0;" data-json='({"a":111})' class="class1"><span id="span1">11111111111</span><b>aaaaaa</b></div>
+    <ul id="ul1">
+        <li>list item 1</li>
+        <li id="li1">list item 2</li>
+        <li>list item 3</li>
+    </ul>
+    <p>a paragraph</p>
+    <ul>
+        <li>1111111111</li>
+    </ul>
+    <script>
+        //--jquery没有的方法
+        //concat,forEach,indexOf
+        //pluck-获取对象集合中每一个元素的属性值。返回值为 null或undefined值得过滤掉。
+        //push--添加元素到当前对象集合的最后。
+        //reduce--与 Array.reduce有相同的用法，遍历当前对象集合。memo是函数上次的返回值。迭代进行遍历。
+        var L = function (msg) {
+            console.log(msg);
+        };
+       // L($("#div1"));
+        // L($("#div1").text()); L($("#div1").html());
+       // L($.contains($("#span1")[0], $("b")[0]));
+
+        // L($.parseJSON('{"a":111}'));
+        //var $list = $('li');
+       // var nl=$list.add('p').css('background-color', 'red');
+        // L(nl);
+        //$('li').html("<a>aaa</a>");
+        // L($('li').html());
+
+        // $("#div1").before('<p>See the following table:</p>')
+        // L($("#div1").concat($("#span1")));
+       // L($("#div1").css(['backgroundColor', 'fontSize']));
+        // L($("#div1").data("json"));
+       // L($("#ul1").find("li"));
+       // L($("#ul1").find($("#li1")));
+        // L($("#ul1").find($("#li1")[0]));
+        // L($('li').first());
+        // L($("#div1").prop("class"));
+
+        //$("li").reduce(function (memo, item, index, array) {
+        //    L(memo); L(item);
+        //    return item.innerHTML += memo.innerHTML;
+        //});
+
+        //$('#li1').unwrap();//.parents()
+        //$('li').wrapAll('<ul />')
+        //$('li').wrapInner('<span><em/></span>')
+
+       // var obj = { name: 'Zepto' },
+  //  handler = function () { console.log("hello from + ", this.name) }
+
+        // ensures that the handler will be executed in the context of `obj`:
+        // $(document).on('click', $.proxy(handler, obj));
+        //$("ppp1").live('click', function () {
+         //   alert("1111");
+       // });
+        // $("body").append("<p id='ppp1'>ppppppppppppp</p>");
+
+        //$("#ul1").on("click", "#li2", function () {
+        //    alert(1111);
+        //});
+
+        //$("#ul1").append("<li id='li2'>99999999999</li>");
+
+        // add a handler for a custom event
+        //$.Event('bbbchange', { bubbles: false });
+
+        //$(document).on('bbbchange', function (e, from, to) {
+        //    console.log('change on %o with data %s, %s', e.target, from, to)
+        //})
+        //// trigger the custom event
+        ////$(document.body).trigger('aaachange', ['one', 'two']);
+
+        //$(document.body).trigger('bbbchange', ['one', 'two']);
+
+        $("#div1").animate({
+            top: "400px"
+        }, 500,
+        'ease-out');
+    </script>
+</body>
+</html>

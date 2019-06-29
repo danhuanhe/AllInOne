@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1" />
+    <title>国画欣赏1</title>
+    <link href="p-stage.css" rel="stylesheet" />
+    <style type="text/css">
+        body{text-align:center;}
+        .p-stage-act{margin:0 auto;max-width:640px;max-height:1607px;}
+        .p-stage-act>div{background-size: contain;background-position: center center;}
+        .p-stage-navicon,.p-stage-music{background-image:url(images/icons.png); background-size:35px auto; background-repeat:no-repeat;}
+        .p-stage-navicon { background-position:0 0;height:40px;width:40px;margin-left:-20px;}
+        .p-stage-music { background-position:center -89px;border:none;left:auto;right:5px;bottom:5px;opacity:0.7;}
+
+        #screen1 { background-image:url(yn1/01.jpg); text-align:center;}
+        #screen2 { background-image:url(yn1/02.jpg);}
+        #screen3 { background-image:url(yn1/03.jpg);}
+        #screen4 { background-image:url(yn1/04.jpg);}
+        #screen5 { background-image:url(yn1/05.jpg);}
+        #screen6 { background-image:url(yn1/06.jpg);}
+        #screen7 { background-image:url(yn1/07.jpg);}
+       </style>
+</head>
+<body>
+<div style="position:absolute;top: 0;left: -10000px;">
+<audio loop="loop" id="myMusic">
+  	<source src="images/music.mp3"  type="audio/mp3"/>
+  </audio>
+</div>
+ <div class="p-stage-act">
+    <div id="screen1">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen2">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen3">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen4">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen5">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen6">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+    <div id="screen7">
+        <section data-path='{"during":1000}' class="txt0">
+        </section>
+    </div>
+</div>
+<script src="../../lib/zepto/zepto.min.js"></script>
+    <script src="Stage.js"></script>
+     <script type="text/javascript">
+        var musicPlayer=document.getElementById("myMusic");
+        var screenIndex=0;
+        var screensObj= new Stage({
+            musicPlayer:musicPlayer,
+            sceneChanged:function(newScene,oldScene){
+                var index=newScene.index;
+                screenIndex=index;
+            }
+        });
+
+        window.onload = function () {
+            screensObj.start();
+        };
+
+    </script>
+</body>
+</html>
