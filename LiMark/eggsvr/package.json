@@ -8,23 +8,37 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
+    "egg-cors": "^2.0.0",
+    "egg-logger": "^2.4.1",
     "egg-scripts": "^2.11.0",
+    "egg-validate": "^2.0.2",
     "egg-view-nunjucks": "^2.2.0",
-    "moment": "^2.24.0"
+    "egg-view-react": "^1.1.0",
+    "egg-view-react-ssr": "^2.5.0",
+    "moment": "^2.24.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
+    "easywebpack-cli": "^4.3.5",
+    "easywebpack-react": "^4.4.3",
     "egg-bin": "^4.11.0",
     "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
+    "egg-webpack": "^4.4.9",
+    "egg-webpack-react": "^2.0.3",
     "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0"
+    "eslint-config-egg": "^7.1.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "ip": "^1.1.5"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "scripts": {
+    "build": "easy build",
     "start": "egg-scripts start --daemon --title=egg-server-eggsvr",
     "stop": "egg-scripts stop --title=egg-server-eggsvr",
     "dev": "egg-bin dev",

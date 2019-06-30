@@ -11,8 +11,14 @@ module.exports = {
     enable: true,
     package: 'egg-view-nunjucks',
   },
-  reghelp:{
+
+  reactssr: {
     enable: true,
-    path: path.join(__dirname, '../lib/plugin/reg-help'),
-  }
+    package: 'egg-view-react-ssr',
+  },
+
+  reghelp: {
+    enable: true,
+    path: path.join(__dirname, '../lib/plugin/reghelp'),
+  },
 };

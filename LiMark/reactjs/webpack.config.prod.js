@@ -180,8 +180,8 @@ export default {
   output: {
     path: `${p__dirname}/publish/static/js`,
     publicPath: Mode2PublicPath[mode],
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js'
+    filename: '[name].js',//'[name].[chunkhash].js',
+    chunkFilename: '[name].js'//'[name].[chunkhash].js'
   },
   plugins: [
     new webpack.ProgressPlugin((percentage, message, ...args) => {
@@ -201,11 +201,11 @@ export default {
         from: './common/**/*',
         to: '../../views'
       }]),
-      new CopyWebpackPlugin([{
-        context: '../publish/views/',
-        from: './daily/*.html',
-        to: '../../static'
-      }])
+      // new CopyWebpackPlugin([{
+      //   context: '../publish/views/',
+      //   from: './daily/*.html',
+      //   to: '../../static'
+      // }])
       // ,
       // new CopyWebpackPlugin([{
       //   context: './src/vendor/',
