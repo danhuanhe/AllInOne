@@ -17,6 +17,11 @@ module.exports = {
     package: 'egg-view-react-ssr',
   },
 
+  graphql :{
+    enable: true,
+    package: 'egg-graphql',
+  },
+
   reghelp: {
     enable: true,
     path: path.join(__dirname, '../lib/plugin/reghelp'),

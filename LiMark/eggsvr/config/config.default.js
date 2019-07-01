@@ -31,8 +31,9 @@ module.exports = appInfo => {
    * 中间件配置
    */
   config.middleware = [
-    'robot',
+    'robot','graphql'
   ];
+
   // robot's configurations
   config.robot = {
     ua: [

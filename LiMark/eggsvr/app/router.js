@@ -8,5 +8,6 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.get('/limark/daily', controller.home.index);
   router.get('/news', controller.news.list);
+  router.get('/gq', controller.news.gq);
 
 };
