@@ -28,7 +28,6 @@ module.exports = () => {
     // 是否加载到 agent 上，默认关闭
     agent: false,
   };
-  
   const localIP = ip.address();
   const domainWhiteList = [];
   [9000, 9001, 9002].forEach(port => {

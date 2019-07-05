@@ -75,6 +75,29 @@ module.exports = appInfo => {
     //   return html;
     // },
   };
+  config.mongodb = {
+      app: true,
+      agent: false,
+      // username: '',
+      // password: '',
+      // hosts: '127.0.0.1:27017',
+      // db: 'limark',
+      // query: ''
+      defalut: {
+          username: '',
+          password: '',
+          hosts: '127.0.0.1:27017',
+          db: 'limark',
+          query: ''
+      },
+      client: {
+          username: '',
+          password: '',
+          hosts: '127.0.0.1:27017',
+          db: 'limark',
+          query: ''
+      }
+  };
   /**
    * 业务配置信息
    */

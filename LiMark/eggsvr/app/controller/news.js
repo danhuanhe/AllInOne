@@ -17,6 +17,8 @@ class NewsController extends Controller {
       ],
     };
     await this.ctx.render('news/list.htm', dataList);
+    //this.ctx.body=await this.ctx.service.mongo.findData("daily",{},{});
+
   }
 
    async gq() {

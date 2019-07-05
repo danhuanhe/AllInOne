@@ -12,3 +12,8 @@ run/
 *.un~
 typings/
 .nyc_output/
+.nyc_output/
+.autod.conf.js
+.travis.yml
+appveyor.yml
+jsconfig.json

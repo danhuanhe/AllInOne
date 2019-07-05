@@ -17,6 +17,13 @@ module.exports = {
     package: 'egg-view-react-ssr',
   },
 
+  mongodb :{
+    enable: true,
+    // feel free to make some local change, and require it like this.
+    // path: your_local_folder_path
+    package: 'egg-mongodb'
+  },
+
   graphql :{
     enable: true,
     package: 'egg-graphql',

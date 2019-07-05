@@ -19,7 +19,9 @@
     "graphql": "^14.4.1",
     "moment": "^2.24.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "mongodb": "^3.1.12",
+    "egg-mongodb":"^1.1.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
