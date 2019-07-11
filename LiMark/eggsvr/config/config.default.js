@@ -17,7 +17,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_123456';
   config.cluster = {
     listen: {
-      port: 80,
+      port: 8080,
       hostname: '127.0.0.1'
       // path: '/var/run/egg.sock',
     }
@@ -28,7 +28,7 @@ module.exports = appInfo => {
   };
 
   /**
-   * 中间件配置
+   * 自定义中间件配置，引入第三方中间件不需要在这里添加
    */
   config.middleware = [
     'robot','graphql'
@@ -40,7 +40,22 @@ module.exports = appInfo => {
       /Baiduspider/i,
     ],
   };
-
+  //自定义代理插件
+  config.eggProxy = {
+      rules: [
+          {
+              proxy_location: '/api', // redirect url
+              proxy_pass: 'http://106.14.172.180', // target origin
+          }
+      ],
+      body_parse: true,
+      proxy_timeout: 3000,
+      gzip: true // default value is true
+  };
+  //第三方插件，基于 http-proxy和http-proxy-middleware
+  config.httpProxy = {
+    '/api': 'http://106.14.172.180'
+  };
   /**
    * WEB服务配置信息
    */

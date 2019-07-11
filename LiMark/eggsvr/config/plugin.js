@@ -29,6 +29,11 @@ module.exports = {
     package: 'egg-graphql',
   },
 
+  httpProxy:{
+    enable: true,
+    package: 'egg-http-proxy',
+  },
+
   reghelp: {
     enable: true,
     path: path.join(__dirname, '../lib/plugin/reghelp'),
